@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/appHome">
+
+    <fragment
+        android:id="@+id/appHome"
+        android:name="com.sapoleone.morse.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/morse2text" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_notifications"
+            app:destination="@id/text2morse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/morse2text"
+        android:name="com.sapoleone.morse.ui.dashboard.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_morse2text_to_appHome"
+            app:destination="@id/appHome" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/text2morse"
+        android:name="com.sapoleone.morse.ui.notifications.NotificationsFragment"
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_text2morse_to_appHome"
+            app:destination="@id/appHome" />
+    </fragment>
+</navigation>

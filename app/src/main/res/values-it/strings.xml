@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_to_morse">Testo a Morse</string>
+    <string name="welcome_to_the_morse_app">Benvenuti nell\'app del morse</string>
+    <string name="morse_to_text">Morse a Testo</string>
+    <string name="use_the_buttons_below_to_write">Usa i bottoni sotto per scrivere…</string>
+    <string name="enter">Invio</string>
+    <string name="insert_text">Inserisci Testo…</string>
+    <string name="write_to_translate">Scrivi per tradurre…</string>
+</resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidMissingOnClickHandler, AndroidMissingOnClickHandler -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sapoleone.morse.ui.dashboard.DashboardFragment">
+
+    <!-- CANCELLA -->
+
+    <!-- SLASH -->
+
+    <!-- PUNTO -->
+
+    <!-- LINEA -->
+    <Button
+        android:id="@+id/del_bt"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="28dp"
+        android:onClick="cancClick"
+        android:text="@string/canc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/slash_bt" />
+
+    <Button
+        android:id="@+id/slash_bt"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="28dp"
+        android:onClick="slashClick"
+        android:text="@string/slash"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/del_bt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dot_bt" />
+
+    <Button
+        android:id="@+id/dot_bt"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="28dp"
+        android:onClick="dotClick"
+        android:text="@string/dot"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/slash_bt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dash_bt" />
+
+    <!-- ENTER -->
+    <Button
+        android:id="@+id/dash_bt"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="28dp"
+        android:onClick="dashClick"
+        android:text="@string/dash"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dot_bt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="132dp"
+
+        android:onClick="decode"
+        android:text="@string/enter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="358dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="26dp"
+        android:text="@string/morse_to_text"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/preview"
+        android:layout_width="317dp"
+        android:layout_height="551dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="57dp"
+        android:text="@string/use_the_buttons_below_to_write"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+
+        android:textAlignment="center"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconGravity="textTop"
+        app:iconSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /> <!--android:text="Back"-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

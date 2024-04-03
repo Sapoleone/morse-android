@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "353814817505",
+    "project_id": "morseapp-aquilerandagie",
+    "storage_bucket": "morseapp-aquilerandagie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353814817505:android:0cf1b1900b1d91fa2525a0",
+        "android_client_info": {
+          "package_name": "com.sapoleone.morse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9JxIIqMEUrqHpx2ARCdK83OrR1Sx8r64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
