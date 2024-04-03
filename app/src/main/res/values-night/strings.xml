@@ -1,5 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="text_to_morse">Text to Morse</string>
-    <string name="welcome_to_the_morse_app">Welcome to the MORSE APP</string>
-</resources>
+<resources></resources>

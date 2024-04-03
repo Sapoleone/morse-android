@@ -1,15 +1,10 @@
 <resources>
     <string name="app_name" translatable="false">MORSE</string>
-    <string name="text_to_morse">Text to Morse</string>
     <string name="morse_to_text">Morse to Text</string>
-    <string name="welcome_to_the_morse_app">Welcome to the MORSE APP</string>
     <string name="use_the_buttons_below_to_write">Use the buttons below to write…</string>
     <string name="dash" translatable="false">-</string>
     <string name="dot" translatable="false">.</string>
     <string name="canc" translatable="false">CANC</string>
     <string name="slash" translatable="false">/</string>
     <string name="enter">ENTER</string>
-    <string name="insert_text">Insert text…</string>
-    <string name="write_to_translate">Write to translate…</string>
-    <string name="version" translatable="false">ver-1.2</string>
 </resources>
