@@ -2,7 +2,6 @@ package com.sapoleone.morse
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,14 +32,14 @@ class MainActivity : AppCompatActivity() {
 
         //val navController2 = findNavController(R.id.nav_host_fragment_activity_main)
 
-        findViewById<Button>(R.id.gotoM2T).setOnClickListener {
+        /*findViewById<Button>(R.id.gotoM2T).setOnClickListener {
             println("BTN 1")
             navController.navigate(R.id.action_navigation_home_to_navigation_dashboard)
         }
 
         findViewById<Button>(R.id.gotoT2M).setOnClickListener {
             navController.navigate(R.id.action_navigation_home_to_navigation_notifications)
-        }
+        }*/
 
 
     }
@@ -115,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
     fun encode(ignoredView: View?){
         //Input
-        val editText = findViewById<EditText>(R.id.txtInput)
+        val editText = findViewById<EditText>(R.id.typeInput)
         val txt = editText.text.toString()
 
         //Init
@@ -183,4 +182,6 @@ class MainActivity : AppCompatActivity() {
         mTxt = mTxt.dropLast(1)
         printAndChange()
     }
+
+    fun changeCanBe(view: View) {}
 }

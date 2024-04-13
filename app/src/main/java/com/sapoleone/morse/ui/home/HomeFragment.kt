@@ -41,6 +41,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_home_to_navigation_notifications)
         }
 
+        binding.gotoLearn.setOnClickListener {
+            findNavController().navigate(R.id.action_appHome_to_learnHomeFragment)
+        }
+
         return binding.root
     }
 

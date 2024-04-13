@@ -3,4 +3,18 @@
     <string name="morse_to_text">Morse a Testo</string>
     <string name="use_the_buttons_below_to_write">Usa i bottoni sotto per scrivere…</string>
     <string name="enter">Invio</string>
+    <string name="welcome_to_the_morse_app">Benvenuto in &#xA; Morse App</string>
+    <string name="text_to_morse">Testo a Morse</string>
+    <string name="insert_text">Inserisci testo…</string>
+    <string name="write_to_translate">Scrivi per tradurre…</string>
+    <string name="learn">Impara</string>
+    <string name="choose">SCEGLI</string>
+    <string name="pairs">COPPIE</string>
+    <string name="type">SCRIVI</string>
+    <string name="write_the_answer">Scrvi la risposta…</string>
+    <string name="pair">Coppie</string>
+    <string name="select_your_favourite_learn_method">Seleziona il tuo metodo preferito per imparare…</string>
+    <string name="correct">Giusto!</string>
+    <string name="wrong">Sbagliato!</string>
+    <string name="score_0">"Score:  0 "</string>
 </resources>

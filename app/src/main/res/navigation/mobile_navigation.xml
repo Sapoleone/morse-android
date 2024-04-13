@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_notifications"
             app:destination="@id/text2morse" />
+        <action
+            android:id="@+id/action_appHome_to_learnHomeFragment"
+            app:destination="@id/learnHomeFragment" />
     </fragment>
 
     <fragment
@@ -32,5 +35,51 @@
         <action
             android:id="@+id/action_text2morse_to_appHome"
             app:destination="@id/appHome" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/learnHomeFragment"
+        android:name="com.sapoleone.morse.ui.learn.LearnHomeFragment"
+        android:label="fragment_learn"
+        tools:layout="@layout/fragment_learn" >
+        <action
+            android:id="@+id/action_learnHomeFragment_to_learnChooseFragment"
+            app:destination="@id/learnChooseFragment" />
+        <action
+            android:id="@+id/action_learnHomeFragment_to_learnPairFragment"
+            app:destination="@id/learnPairFragment" />
+        <action
+            android:id="@+id/action_learnHomeFragment_to_learnTypeFragment"
+            app:destination="@id/learnTypeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/learnChooseFragment"
+        android:name="com.sapoleone.morse.ui.learn.choose.LearnChooseFragment"
+        android:label="fragment_learn_choose"
+        tools:layout="@layout/fragment_learn_choose" >
+        <action
+            android:id="@+id/action_learnChooseFragment_to_learnHomeFragment"
+            app:destination="@id/learnHomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/learnPairFragment"
+        android:name="com.sapoleone.morse.ui.learn.pair.LearnPairFragment"
+        android:label="fragment_learn_pair"
+        tools:layout="@layout/fragment_learn_pair" >
+        <action
+            android:id="@+id/action_learnPairFragment_to_learnHomeFragment"
+            app:destination="@id/learnHomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/learnTypeFragment"
+        android:name="com.sapoleone.morse.ui.learn.type.LearnTypeFragment"
+        android:label="fragment_learn_type"
+        tools:layout="@layout/fragment_learn_type" >
+        <action
+            android:id="@+id/action_learnTypeFragment_to_learnHomeFragment"
+            app:destination="@id/learnHomeFragment" />
     </fragment>
 </navigation>

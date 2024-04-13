@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.learn.choose.LearnChooseFragment">
+
+
+    <TextView
+        android:id="@+id/title_Learn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/learn"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle_Learn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:text="@string/choose"
+        android:textColor="?attr/colorSecondaryVariant"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_Learn_1" />
+
+    <TextView
+        android:id="@+id/choosePrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="121dp"
+        android:layout_marginTop="190dp"
+        android:gravity="center"
+        android:text="@string/wait"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAns1"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="150dp"
+        android:text="Ans 1"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAns3"
+        app:layout_constraintEnd_toStartOf="@+id/btnAns2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choosePrompt" />
+
+    <Button
+        android:id="@+id/btnAns2"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="150dp"
+        android:text="Ans 2"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAns4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAns1"
+        app:layout_constraintTop_toBottomOf="@+id/choosePrompt" />
+
+    <Button
+        android:id="@+id/btnAns4"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="100dp"
+        android:text="Ans 4"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAns3"
+        app:layout_constraintTop_toBottomOf="@+id/btnAns2" />
+
+    <Button
+        android:id="@+id/btnAns3"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="100dp"
+        android:text="Ans 3"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnAns4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAns1" />
+
+    <Button
+        android:id="@+id/backFromChoose"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/back"
+        android:textAlignment="center"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconGravity="textTop"
+        app:iconSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/scoreboard"
+        android:layout_width="113dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="120dp"
+        android:gravity="center"
+        android:text="@string/score_0"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/isCorrectChoose"
+        android:layout_width="335dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="43dp"
+        android:background="@drawable/rounded_correct_background"
+        android:fadingEdge="horizontal|vertical"
+        android:gravity="center"
+        android:text="@string/lorem_ipsum"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btnAns1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox_text"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:buttonTint="?attr/colorPrimary"
+        android:checked="true"
+        android:clickable="true"
+        android:fontFamily="monospace"
+        android:text=" Text"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true" />
+
+    <CheckBox
+        android:id="@+id/checkBox_morse"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="-15dp"
+        android:layout_marginEnd="16dp"
+        android:buttonTint="?attr/colorPrimary"
+        android:checked="true"
+        android:fontFamily="monospace"
+        android:text="Morse"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_text" />
+
+    <Button
+        android:id="@+id/sendSettingsChoose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Save"
+        android:onClick="changeCanBe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_morse" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ow_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ow_launcher_round"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.MORSE"
         tools:targetApi="tiramisu">
@@ -25,3 +25,4 @@
     </application>
 
 </manifest>
+<!-- android:roundIcon="@mipmap/ow_launcher_round" -->

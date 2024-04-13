@@ -23,7 +23,7 @@
         tools:text="@string/text_to_morse" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txtInput"
+        android:id="@+id/typeInput"
         android:layout_width="297dp"
         android:layout_height="68dp"
         android:layout_marginStart="55dp"
@@ -48,7 +48,7 @@
         android:text="@string/write_to_translate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInput" /> <!-- @string/lorem_ipsum -->
+        app:layout_constraintTop_toBottomOf="@+id/typeInput" /> <!-- @string/lorem_ipsum -->
 
     <Button
         android:id="@+id/backFromText2Morse"
