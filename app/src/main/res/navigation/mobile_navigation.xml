@@ -9,14 +9,11 @@
         android:name="com.sapoleone.morse.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_navigation_home_to_navigation_dashboard"
-            app:destination="@id/morse2text" />
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_notifications"
-            app:destination="@id/text2morse" />
-        <action
             android:id="@+id/action_appHome_to_learnHomeFragment"
             app:destination="@id/learnHomeFragment" />
+        <action
+            android:id="@+id/action_appHome_to_translateHomeFragment"
+            app:destination="@id/translateHomeFragment" />
     </fragment>
 
     <fragment
@@ -24,8 +21,8 @@
         android:name="com.sapoleone.morse.ui.dashboard.DashboardFragment"
         tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_morse2text_to_appHome"
-            app:destination="@id/appHome" />
+            android:id="@+id/action_morse2text_to_translateHomeFragment"
+            app:destination="@id/translateHomeFragment" />
     </fragment>
 
     <fragment
@@ -33,8 +30,8 @@
         android:name="com.sapoleone.morse.ui.notifications.NotificationsFragment"
         tools:layout="@layout/fragment_notifications" >
         <action
-            android:id="@+id/action_text2morse_to_appHome"
-            app:destination="@id/appHome" />
+            android:id="@+id/action_text2morse_to_translateHomeFragment"
+            app:destination="@id/translateHomeFragment" />
     </fragment>
 
     <fragment
@@ -81,5 +78,17 @@
         <action
             android:id="@+id/action_learnTypeFragment_to_learnHomeFragment"
             app:destination="@id/learnHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/translateHomeFragment"
+        android:name="com.sapoleone.morse.ui.translate.TranslateHomeFragment"
+        android:label="fragment_translate_home"
+        tools:layout="@layout/fragment_translate_home" >
+        <action
+            android:id="@+id/action_translateHomeFragment_to_text2morse"
+            app:destination="@id/text2morse" />
+        <action
+            android:id="@+id/action_translateHomeFragment_to_morse2text"
+            app:destination="@id/morse2text" />
     </fragment>
 </navigation>

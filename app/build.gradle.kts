@@ -12,9 +12,17 @@ android {
         applicationId = "com.sapoleone.morse"
         minSdk = 24
         targetSdk = 34
-        versionCode = 4
-        versionName = "2.0-beta_01"
+        versionCode = 5
+        versionName = "2.0-beta_02"
 
+        /*
+        OLD Versions:
+        01 - [...]
+        02 - [...]
+        03 - [...]
+        04 - 2.0-beta_01
+        05 - 2.0-beta_02
+        */
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

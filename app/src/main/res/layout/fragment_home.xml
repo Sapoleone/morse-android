@@ -8,13 +8,13 @@
     tools:visibility="visible">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/heading_Welcome"
         android:layout_width="368dp"
         android:layout_height="95dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="55dp"
         android:layout_marginEnd="25dp"
-        android:text="@string/welcome_to_the_morse_app"
+        android:text="@string/welcome_to"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="?attr/colorPrimary"
@@ -31,6 +31,25 @@
     <!-- goto TEXT 2 MORSE -->
 
     <TextView
+        android:id="@+id/heading_AppTitle"
+        android:layout_width="365dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="25dp"
+        android:text="@string/appTitle"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/version"
@@ -39,38 +58,34 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- goto LEARN -->
-    <Button
-        android:id="@+id/gotoLearn"
-        android:layout_width="172dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="225dp"
-        android:text="@string/learn"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gotoT2M" />
 
     <Button
-        android:id="@+id/gotoM2T"
-        android:layout_width="172dp"
-        android:layout_height="60dp"
-        android:text="@string/morse_to_text"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/gotoT2M"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/gotoT2M"
-        android:layout_width="172dp"
-        android:layout_height="60dp"
-        android:text="@string/text_to_morse"
-        android:textSize="16sp"
+        android:id="@+id/gotoConv"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginEnd="105dp"
+        android:text="@string/translate"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/gotoLearn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gotoM2T" />
+        app:layout_constraintTop_toBottomOf="@+id/heading_AppTitle" />
+
+    <Button
+        android:id="@+id/gotoLearn"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="250dp"
+        android:text="@string/learn"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gotoConv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.translate.TranslateHomeFragment">
+
+    <Button
+        android:id="@+id/gotoT2M"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="250dp"
+        android:text="@string/text"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gotoM2T" />
+
+    <Button
+        android:id="@+id/gotoM2T"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/morse"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/gotoT2M"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headingTranslate" />
+
+    <TextView
+        android:id="@+id/headingTranslate"
+        android:layout_width="201dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:text="Translate"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/infoTranslate"
+        android:layout_width="274dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/rounded_yellow_background"
+        android:fadingEdge="horizontal|vertical"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/translate_info"
+
+        android:textAlignment="center"
+        android:textColor="@color/material_dynamic_neutral20"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headingTranslate" />
+
+    <Button
+        android:id="@+id/backFromConv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/back"
+        android:textAlignment="center"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconGravity="textTop"
+        app:iconSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

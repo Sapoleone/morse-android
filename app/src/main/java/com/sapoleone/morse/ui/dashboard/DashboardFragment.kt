@@ -32,7 +32,7 @@ class DashboardFragment : Fragment() {
 
         _binding!!.backFromMorse2Text.setOnClickListener {
             println("Btn 2")
-            findNavController().navigate(R.id.action_morse2text_to_appHome)
+            findNavController().navigate(R.id.action_morse2text_to_translateHomeFragment)
         }
         return root
     }

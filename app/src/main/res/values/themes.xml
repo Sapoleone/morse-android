@@ -12,6 +12,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Tertiary brand color. -->
+        <item name="colorTertiary">@android:color/holo_orange_dark</item>
+        <item name="colorTertiaryContainer">@android:color/holo_red_dark</item>
+        <item name="colorOnTertiary">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

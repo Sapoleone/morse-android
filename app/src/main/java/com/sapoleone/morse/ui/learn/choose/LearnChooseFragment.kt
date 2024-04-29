@@ -274,7 +274,7 @@ class LearnChooseFragment : Fragment() {
 
     }
 
-    fun changeCanBe() {
+    private fun changeCanBe() {
         println("fun: changeCanBe")
         val tempCanBe = canBe
         if (binding.checkBoxMorse.isChecked && !(binding.checkBoxText.isChecked)){

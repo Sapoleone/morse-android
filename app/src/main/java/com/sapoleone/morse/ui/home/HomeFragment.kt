@@ -33,17 +33,16 @@ class HomeFragment : Fragment() {
             textView.text = it
         }*/
 
-        binding.gotoM2T.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_navigation_dashboard)
-        }
-
-        binding.gotoT2M.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_navigation_notifications)
+        binding.gotoConv.setOnClickListener {
+            findNavController().navigate(R.id.action_appHome_to_translateHomeFragment)
         }
 
         binding.gotoLearn.setOnClickListener {
             findNavController().navigate(R.id.action_appHome_to_learnHomeFragment)
         }
+        /*binding.debugBTN.setOnClickListener {
+            findNavController().navigate(R.id.learnPairFragment)
+        }*/
 
         return binding.root
     }

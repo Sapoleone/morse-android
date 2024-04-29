@@ -23,19 +23,13 @@ class NotificationsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this)[NotificationsViewModel::class.java]
+        val notificationsViewModel = ViewModelProvider(this)[NotificationsViewModel::class.java]
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /*val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
-
         binding.backFromText2Morse.setOnClickListener {
-            findNavController().navigate(R.id.action_text2morse_to_appHome)
+            findNavController().navigate(R.id.action_text2morse_to_translateHomeFragment)
         }
 
         return root

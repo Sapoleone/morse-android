@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="morse_to_text">Morse a Testo</string>
     <string name="use_the_buttons_below_to_write">Usa i bottoni sotto per scrivere…</string>
     <string name="enter">Invio</string>
-    <string name="welcome_to_the_morse_app">Benvenuto in &#xA; Morse App</string>
-    <string name="text_to_morse">Testo a Morse</string>
+    <string name="welcome_to_the_morse_app">Benvenuto in \n Morse App</string>
+    <string name="text">Testo</string>
     <string name="insert_text">Inserisci testo…</string>
     <string name="write_to_translate">Scrivi per tradurre…</string>
-    <string name="learn">Impara</string>
     <string name="choose">SCEGLI</string>
     <string name="pairs">COPPIE</string>
     <string name="type">SCRIVI</string>
@@ -17,4 +15,12 @@
     <string name="correct">Giusto!</string>
     <string name="wrong">Sbagliato!</string>
     <string name="score_0">"Score:  0 "</string>
+    <string name="back">Indietro</string>
+    <string name="score">Punteggio: %1$s</string>
+    <string name="welcome_to">Benvenuti in</string>
+    <string name="appTitle">Morse App</string>
+    <string name="translate">Traduci</string>
+    <string name="translate_info">Vuoi tradurre dal Morse o dal Testo?</string>
+    <string name="text_to_morse">Testo a Morse</string>
+    <string name="morse_to_text">Morse a Testo</string>
 </resources>

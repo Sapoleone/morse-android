@@ -74,19 +74,6 @@
         app:layout_constraintTop_toBottomOf="@+id/choosePrompt" />
 
     <Button
-        android:id="@+id/btnAns4"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="100dp"
-        android:text="Ans 4"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnAns3"
-        app:layout_constraintTop_toBottomOf="@+id/btnAns2" />
-
-    <Button
         android:id="@+id/btnAns3"
         android:layout_width="150dp"
         android:layout_height="75dp"
@@ -98,6 +85,19 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAns1" />
+
+    <Button
+        android:id="@+id/btnAns4"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="100dp"
+        android:text="Ans 4"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAns3"
+        app:layout_constraintTop_toBottomOf="@+id/btnAns2" />
 
     <Button
         android:id="@+id/backFromChoose"

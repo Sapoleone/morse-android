@@ -77,15 +77,14 @@ class LearnTypeFragment : Fragment() {
         print("Index: ")
         println(index)
 
-        if (!isMorse){
-            isCorrect = if (ciph2[index] == prompt){
+        isCorrect = if (!isMorse){
+            if (ciph2[index] == prompt){
                 true
             } else{
                 false
             }
-        }
-        else{
-            isCorrect = if (ciph1[index] == prompt){
+        } else{
+            if (ciph1[index] == prompt){
                 true
             } else{
                 false

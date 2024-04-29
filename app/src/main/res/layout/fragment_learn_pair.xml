@@ -35,45 +35,49 @@
     <!-- </TITLE> -->
 
     <!-- <buttonMorse> -->
+
     <Button
         android:id="@+id/btnM1"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="230dp"
         android:text="btnM1"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnM2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subtitle_Learn_2" />
 
     <Button
-        android:id="@+id/btnM2"
-        android:layout_width="0dp"
+        android:id="@+id/btnM5"
+        android:layout_width="125dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="230dp"
-        android:text="btnM2"
+        android:layout_marginBottom="50dp"
+        android:text="btnM5"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnM1" />
+        app:layout_constraintTop_toBottomOf="@+id/btnM4" />
 
     <Button
         android:id="@+id/btnM3"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="230dp"
         android:text="btnM3"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnM4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnM2" />
 
@@ -82,58 +86,96 @@
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="230dp"
         android:text="btnM4"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnM5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnM3" />
 
     <Button
-        android:id="@+id/btnM5"
+        android:id="@+id/btnM2"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="230dp"
-        android:layout_marginBottom="100dp"
-        android:text="btnM5"
+        android:text="btnM2"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnM3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnM1" />
+
+    <!-- </buttonMorse> -->
+
+    <!-- <buttonText>-->
+
+    <!-- </buttonText>-->
+
+    <!-- TODO: Remove those two text views (learn-pair.xml), when you write the code for the Learn.PAIR feature-->
+    <Button
+        android:id="@+id/btnT5"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="50dp"
+        android:text="btnT5"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnM4" />
-    <!-- </buttonMorse> -->
+        app:layout_constraintTop_toBottomOf="@+id/btnT4" />
 
-    <!-- <buttonText>-->
     <Button
         android:id="@+id/btnT1"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="230dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="55dp"
         android:text="btnT1"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnT2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subtitle_Learn_2" />
+
+    <Button
+        android:id="@+id/btnT4"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginEnd="55dp"
+        android:text="btnT4"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnT5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnT3" />
 
     <Button
         android:id="@+id/btnT2"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="230dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="55dp"
         android:text="btnT2"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnT3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnT1" />
 
@@ -142,47 +184,16 @@
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="230dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="56dp"
         android:text="btnT3"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnT4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnT2" />
 
-    <Button
-        android:id="@+id/btnT4"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="230dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="55dp"
-        android:text="btnT4"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnT3" />
-
-    <Button
-        android:id="@+id/btnT5"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="230dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="100dp"
-        android:text="btnT5"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnT4" />
-    <!-- </buttonText>-->
-
-    <!-- TODO: Remove those two text views (learn-pair.xml), when you write the code for the Learn.PAIR feature-->
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -209,6 +220,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
+        android:text="@string/back"
         android:textAlignment="center"
         app:icon="?attr/actionModeCloseDrawable"
         app:iconGravity="textTop"
