@@ -1,17 +1,26 @@
+@file:Suppress("SameParameterValue")
+
 package com.sapoleone.morse.ui.learn.type
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentLearnTypeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+@Suppress("SameParameterValue")
 class LearnTypeFragment : Fragment() {
 
     private lateinit var binding: FragmentLearnTypeBinding
@@ -37,7 +46,32 @@ class LearnTypeFragment : Fragment() {
         }
 
     }
+    private var score:Int = 0
+    private fun printWrong(waitTime: Long){
+        score -= 50
 
+        binding.isCorrectType.isVisible = true
+        binding.isCorrectType.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_wrong_background)
+        binding.isCorrectType.text = getString(R.string.wrong)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(waitTime)
+            binding.isCorrectType.isVisible = false
+        }
+    }
+
+    private fun printCorrect(waitTime: Long){
+        score += 100
+
+        binding.isCorrectType.isVisible = true
+        binding.isCorrectType.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_correct_background)
+        binding.isCorrectType.text = getString(R.string.correct)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(waitTime)
+            binding.isCorrectType.isVisible = false
+        }
+    }
     private fun selectPrompt(): String {
         val ciph1 = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
         val ciph2 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
@@ -73,22 +107,13 @@ class LearnTypeFragment : Fragment() {
         val ciph1 = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
         val ciph2 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
 
-        val isCorrect : Boolean
         print("Index: ")
         println(index)
 
-        isCorrect = if (!isMorse){
-            if (ciph2[index] == prompt){
-                true
-            } else{
-                false
-            }
+        val isCorrect : Boolean = if (!isMorse){
+            ciph2[index] == prompt
         } else{
-            if (ciph1[index] == prompt){
-                true
-            } else{
-                false
-            }
+            ciph1[index] == prompt
         }
 
         return isCorrect
@@ -102,9 +127,11 @@ class LearnTypeFragment : Fragment() {
             val result = verifyInput(/*input,*/ prompt, index, isMorse)
             if(result){
                 println("Correct")
+                printCorrect(1000)
             }
             else{
                 println("Wrong")
+                printWrong(1000)
             }
             typeGameMain()
         }
@@ -155,8 +182,7 @@ class LearnTypeFragment : Fragment() {
         }
         return iTemp
     }
-
-
+    
     private fun typeGameMain(){
         //while (true){
             val prompt = selectPrompt()

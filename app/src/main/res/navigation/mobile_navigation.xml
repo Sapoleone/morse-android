@@ -18,8 +18,8 @@
 
     <fragment
         android:id="@+id/morse2text"
-        android:name="com.sapoleone.morse.ui.dashboard.DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" >
+        android:name="com.sapoleone.morse.ui.translate.morse.MorseFragment"
+        tools:layout="@layout/fragment_morse" >
         <action
             android:id="@+id/action_morse2text_to_translateHomeFragment"
             app:destination="@id/translateHomeFragment" />
@@ -27,8 +27,8 @@
 
     <fragment
         android:id="@+id/text2morse"
-        android:name="com.sapoleone.morse.ui.notifications.NotificationsFragment"
-        tools:layout="@layout/fragment_notifications" >
+        android:name="com.sapoleone.morse.ui.translate.text.TextFragment"
+        tools:layout="@layout/fragment_text" >
         <action
             android:id="@+id/action_text2morse_to_translateHomeFragment"
             app:destination="@id/translateHomeFragment" />

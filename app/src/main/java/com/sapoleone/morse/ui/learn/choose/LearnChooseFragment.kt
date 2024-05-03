@@ -1,5 +1,10 @@
+@file:Suppress("SameParameterValue", "SameParameterValue", "SameParameterValue",
+    "SameParameterValue", "SameParameterValue"
+)
+
 package com.sapoleone.morse.ui.learn.choose
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +22,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+@Suppress("SameParameterValue", "SameParameterValue", "SameParameterValue", "SameParameterValue",
+    "SameParameterValue"
+)
 class LearnChooseFragment : Fragment() {
 
     private lateinit var binding: FragmentLearnChooseBinding
@@ -126,6 +134,7 @@ class LearnChooseFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun printArray(array: Array<String>, prompt : String) {
         val rand = Random.nextInt(0, 10)
         val waitTime : Long = 1000

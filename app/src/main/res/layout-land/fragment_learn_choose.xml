@@ -37,9 +37,9 @@
 
     <TextView
         android:id="@+id/choosePrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="121dp"
-        android:layout_marginTop="190dp"
+        android:layout_width="199dp"
+        android:layout_height="131dp"
+        android:layout_marginTop="128dp"
         android:gravity="center"
         android:text="@string/wait"
         android:textAlignment="center"
@@ -53,53 +53,49 @@
         android:id="@+id/btnAns1"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:layout_marginTop="150dp"
-        android:text="An s 1"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAns3"
-        app:layout_constraintEnd_toStartOf="@+id/btnAns2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choosePrompt" />
-
-    <Button
-        android:id="@+id/btnAns2"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="150dp"
-        android:text="Ans 2"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAns4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnAns1"
-        app:layout_constraintTop_toBottomOf="@+id/choosePrompt" />
-
-    <Button
-        android:id="@+id/btnAns3"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="100dp"
-        android:text="Ans 3"
+        android:layout_marginBottom="16dp"
+        android:text="Ans 1"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnAns4"
+        app:layout_constraintEnd_toStartOf="@+id/btnAns2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAns1" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAns4"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="16dp"
         android:text="Ans 4"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnAns3"
-        app:layout_constraintTop_toBottomOf="@+id/btnAns2" />
+        app:layout_constraintStart_toEndOf="@+id/btnAns3" />
+
+    <Button
+        android:id="@+id/btnAns3"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="16dp"
+        android:text="Ans 3"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnAns4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAns2" />
+
+    <Button
+        android:id="@+id/btnAns2"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="16dp"
+        android:text="Ans 2"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnAns3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAns1" />
 
     <Button
         android:id="@+id/backFromChoose"
@@ -119,21 +115,20 @@
         android:id="@+id/scoreboard"
         android:layout_width="113dp"
         android:layout_height="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="104dp"
         android:gravity="center"
         android:text="@string/score_0"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/isCorrectChoose"
-        android:layout_width="335dp"
-        android:layout_height="98dp"
-        android:layout_marginBottom="43dp"
+        android:layout_width="274dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/rounded_correct_background"
         android:fadingEdge="horizontal|vertical"
         android:gravity="center"
@@ -141,9 +136,10 @@
         android:textAlignment="center"
         android:textSize="48sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/btnAns1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle_Learn_1" />
 
     <CheckBox
         android:id="@+id/checkBox_text"
@@ -154,12 +150,12 @@
         android:buttonTint="?attr/colorPrimary"
         android:checked="true"
         android:clickable="true"
+        android:focusable="true"
         android:fontFamily="monospace"
         android:text=" Text"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox_morse"
@@ -180,8 +176,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Save"
         android:onClick="changeCanBe"
+        android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_morse" />
 

@@ -1,10 +1,10 @@
-package com.sapoleone.morse.ui.dashboard
+package com.sapoleone.morse.ui.translate.morse
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class MorseViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

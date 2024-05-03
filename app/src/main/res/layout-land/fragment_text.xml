@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sapoleone.morse.ui.notifications.NotificationsFragment">
+    tools:context="com.sapoleone.morse.ui.translate.text.TextFragment">
 
     <TextView
         android:id="@+id/textView4"
@@ -22,33 +22,31 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/text_to_morse" />
 
+    <!-- @string/lorem_ipsum -->
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/typeInput"
         android:layout_width="297dp"
         android:layout_height="68dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="93dp"
         android:autoLink="none"
         android:hint="@string/insert_text"
         android:inputType="text"
         android:onClick="encode"
         android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/output"
-        android:layout_width="290dp"
-        android:layout_height="635dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="55dp"
+        android:layout_width="356dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/write_to_translate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeInput" /> <!-- @string/lorem_ipsum -->
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/backFromText2Morse"
@@ -57,6 +55,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
 
+        android:text="@string/back"
         android:textAlignment="center"
         app:icon="?attr/actionModeCloseDrawable"
         app:iconGravity="textTop"

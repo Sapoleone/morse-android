@@ -1,4 +1,4 @@
-package com.sapoleone.morse.ui.dashboard
+package com.sapoleone.morse.ui.translate.morse
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.sapoleone.morse.R
-import com.sapoleone.morse.databinding.FragmentDashboardBinding
+import com.sapoleone.morse.databinding.FragmentMorseBinding
 
 
-class DashboardFragment : Fragment() {
+class MorseFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentMorseBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,10 +24,10 @@ class DashboardFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this)[DashboardViewModel::class.java]
+        val morseViewModel =
+            ViewModelProvider(this)[MorseViewModel::class.java]
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentMorseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         _binding!!.backFromMorse2Text.setOnClickListener {

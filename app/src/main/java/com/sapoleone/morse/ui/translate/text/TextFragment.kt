@@ -1,18 +1,17 @@
-package com.sapoleone.morse.ui.notifications
+package com.sapoleone.morse.ui.translate.text
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.sapoleone.morse.R
-import com.sapoleone.morse.databinding.FragmentNotificationsBinding
+import com.sapoleone.morse.databinding.FragmentTextBinding
 
-class NotificationsFragment : Fragment() {
+class TextFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentTextBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,9 +22,9 @@ class NotificationsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel = ViewModelProvider(this)[NotificationsViewModel::class.java]
+        //val textViewModel = ViewModelProvider(this)[TextViewModel::class.java]
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentTextBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         binding.backFromText2Morse.setOnClickListener {

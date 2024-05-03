@@ -20,7 +20,7 @@
     <string name="wait" translatable="false">Wait...</string>
     <string name="home" translatable="false">HOME</string>
     <string name="pair">Pair</string>
-    <string name="select_your_favourite_learn_method">Select your favourite learn method…</string>
+    <string name="select_your_favourite_learn_method">Select a learn method…</string>
     <string name="correct">Correct!</string>
     <string name="wrong">Wrong!</string>
     <string name="score_0">"Score:  0 "</string>
@@ -35,6 +35,6 @@
     <string name="morse_to_text">Morse to Text</string>
 
     <!-- VERSION NAME -->
-    <string name="version" translatable="false">v2.0.0-beta_02</string>
+    <string name="version" translatable="false">v2.0.0-beta_03</string>
 
 </resources>

@@ -1,7 +1,12 @@
 package com.sapoleone.morse.ui.learn.pair
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LearnPairViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+    private val _text = MutableLiveData<String>().apply {
+        value = "This is LearnPair Fragment"
+    }
+    val text: LiveData<String> = _text
 }

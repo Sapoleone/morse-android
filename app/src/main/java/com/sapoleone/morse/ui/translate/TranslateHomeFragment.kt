@@ -15,7 +15,7 @@ class TranslateHomeFragment : Fragment() {
     private var _binding: FragmentTranslateHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: TranslateHomeViewModel
+    //private lateinit var viewModel: TranslateHomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

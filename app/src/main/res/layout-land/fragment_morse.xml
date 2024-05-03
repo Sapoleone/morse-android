@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sapoleone.morse.ui.dashboard.DashboardFragment">
+    tools:context="com.sapoleone.morse.ui.translate.morse.MorseFragment">
 
     <!-- CANCELLA -->
 
@@ -14,68 +14,66 @@
     <!-- PUNTO -->
 
     <!-- LINEA -->
+
+    <!-- ENTER -->
+
     <Button
         android:id="@+id/del_bt"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="32dp"
         android:onClick="cancClick"
         android:text="@string/canc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/slash_bt" />
+        app:layout_constraintTop_toBottomOf="@+id/slash_bt" />
 
     <Button
         android:id="@+id/slash_bt"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="32dp"
         android:onClick="slashClick"
         android:text="@string/slash"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/del_bt"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/dot_bt" />
+        app:layout_constraintBottom_toTopOf="@+id/del_bt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dot_bt" />
 
     <Button
         android:id="@+id/dot_bt"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="32dp"
         android:onClick="dotClick"
         android:text="@string/dot"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/slash_bt"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/dash_bt" />
+        app:layout_constraintBottom_toTopOf="@+id/slash_bt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dash_bt" />
 
-    <!-- ENTER -->
     <Button
         android:id="@+id/dash_bt"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="32dp"
         android:onClick="dashClick"
         android:text="@string/dash"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/dot_bt"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/dot_bt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="168dp"
 
         android:onClick="decode"
         android:text="@string/enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.776"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -92,21 +90,22 @@
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/preview"
-        android:layout_width="317dp"
-        android:layout_height="551dp"
+        android:layout_width="375dp"
+        android:layout_height="275dp"
         android:layout_marginStart="57dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="57dp"
         android:text="@string/use_the_buttons_below_to_write"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 

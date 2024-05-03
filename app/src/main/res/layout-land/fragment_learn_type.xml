@@ -33,22 +33,6 @@
         app:layout_constraintTop_toBottomOf="@+id/title_Learn_3" />
 
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/typeInput"
-        android:layout_width="297dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="479dp"
-        android:layout_marginEnd="55dp"
-        android:autoLink="none"
-        android:hint="@string/write_the_answer"
-        android:inputType="text"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/backFromType"
         android:layout_width="50dp"
@@ -62,18 +46,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/typeInput"
+        android:layout_width="297dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="20dp"
+        android:autoLink="none"
+        android:hint="@string/write_the_answer"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/typePrompt"
         android:layout_width="218dp"
         android:layout_height="156dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="112dp"
         android:gravity="center"
         android:text="@string/wait"
         android:textAlignment="center"
         android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,18 +81,18 @@
         android:id="@+id/isCorrectType"
         android:layout_width="335dp"
         android:layout_height="98dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/rounded_correct_background"
         android:fadingEdge="horizontal|vertical"
         android:gravity="center"
         android:text="@string/lorem_ipsum"
         android:textAlignment="center"
-        android:textSize="48sp"
 
+        android:textSize="48sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typePrompt" />
+        app:layout_constraintTop_toBottomOf="@+id/subtitle_Learn_3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

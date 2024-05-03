@@ -1,3 +1,5 @@
+@file:Suppress("SameParameterValue", "SameParameterValue", "SameParameterValue")
+
 package com.sapoleone.morse.ui.learn.pair
 
 import android.os.Bundle
@@ -11,24 +13,24 @@ import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentLearnPairBinding
 import kotlin.random.Random
 
+@Suppress("SameParameterValue", "SameParameterValue")
 class LearnPairFragment : Fragment() {
 
     private var _binding: FragmentLearnPairBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         val learnPairViewModel = ViewModelProvider(this)[LearnPairViewModel::class.java]
 
         _binding = FragmentLearnPairBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
 
 
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

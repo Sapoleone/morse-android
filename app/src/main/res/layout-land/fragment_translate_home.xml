@@ -7,33 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.translate.TranslateHomeFragment">
 
-    <Button
-        android:id="@+id/gotoT2M"
-        android:layout_width="200dp"
-        android:layout_height="85dp"
-        android:layout_marginBottom="250dp"
-        android:text="@string/text"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gotoM2T" />
-
-    <Button
-        android:id="@+id/gotoM2T"
-        android:layout_width="200dp"
-        android:layout_height="85dp"
-        android:text="@string/morse"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/gotoT2M"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoTranslate" />
-
     <TextView
         android:id="@+id/headingTranslate"
         android:layout_width="201dp"
@@ -54,22 +27,46 @@
         android:id="@+id/infoTranslate"
         android:layout_width="274dp"
         android:layout_height="104dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/rounded_yellow_background"
+
         android:fadingEdge="horizontal|vertical"
         android:gravity="center"
         android:lineSpacingExtra="8sp"
-
         android:text="@string/translate_info"
         android:textAlignment="center"
         android:textColor="@color/material_dynamic_neutral20"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/gotoM2T"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/gotoM2T"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/morse"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/gotoT2M"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/text"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gotoM2T" />
 
     <Button
         android:id="@+id/backFromConv"

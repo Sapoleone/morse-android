@@ -12,8 +12,8 @@ android {
         applicationId = "com.sapoleone.morse"
         minSdk = 24
         targetSdk = 34
-        versionCode = 5
-        versionName = "2.0-beta_02"
+        versionCode = 6
+        versionName = "2.0-beta_03"
 
         /*
         OLD Versions:
@@ -46,7 +46,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
