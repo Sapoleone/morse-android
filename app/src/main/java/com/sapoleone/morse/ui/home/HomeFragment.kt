@@ -40,9 +40,9 @@ class HomeFragment : Fragment() {
         binding.gotoLearn.setOnClickListener {
             findNavController().navigate(R.id.action_appHome_to_learnHomeFragment)
         }
-        /*binding.debugBTN.setOnClickListener {
-            findNavController().navigate(R.id.learnPairFragment)
-        }*/
+        binding.btnSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_appHome_to_settingsFragment)
+        }
 
         return binding.root
     }

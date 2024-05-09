@@ -1,6 +1,4 @@
-@file:Suppress("SameParameterValue", "SameParameterValue", "SameParameterValue",
-    "SameParameterValue", "SameParameterValue"
-)
+@file:Suppress("SameParameterValue")
 
 package com.sapoleone.morse.ui.learn.choose
 
@@ -14,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.sapoleone.morse.MainActivity
 import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentLearnChooseBinding
 import kotlinx.coroutines.CoroutineScope
@@ -22,11 +21,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-@Suppress("SameParameterValue", "SameParameterValue", "SameParameterValue", "SameParameterValue",
-    "SameParameterValue"
-)
 class LearnChooseFragment : Fragment() {
-
+    //val db = Firebase.firestore
     private lateinit var binding: FragmentLearnChooseBinding
 
     override fun onCreateView(
@@ -50,6 +46,7 @@ class LearnChooseFragment : Fragment() {
     
     private val ciphTxt = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
     private val ciphMor = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
+    //private var score = (activity as MainActivity).getScore("c")
     private var score = 0
     private var canBe = 0 //0: Both;  1: OnlyMorse;  2: OnlyText
 
@@ -307,5 +304,11 @@ class LearnChooseFragment : Fragment() {
         if (tempCanBe != canBe){
             gameMain()
         }
+    }
+
+
+    override fun onDestroyView() {
+        (activity as MainActivity).setScore(score, "c")
+        super.onDestroyView()
     }
 }

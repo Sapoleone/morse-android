@@ -36,5 +36,9 @@
 
     <!-- VERSION NAME -->
     <string name="version" translatable="false">v2.0.0-beta_03</string>
+    <string name="insert_username">Insert Username...</string>
+    <string name="save">Save</string>
+    <string name="username">Username</string>
+    <string name="settings">Settings</string>
 
 </resources>

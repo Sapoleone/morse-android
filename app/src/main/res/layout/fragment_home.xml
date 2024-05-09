@@ -88,4 +88,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gotoConv" />
 
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="85dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:icon="@drawable/ic_settings_black_24dp"
+        app:iconGravity="start"
+        app:iconSize="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:iconGravity="top" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

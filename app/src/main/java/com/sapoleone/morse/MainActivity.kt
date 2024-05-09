@@ -1,53 +1,54 @@
 package com.sapoleone.morse
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.sapoleone.morse.databinding.ActivityMainBinding
+import com.sapoleone.morse.databinding.FragmentSettingsBinding
 
 class MainActivity : AppCompatActivity() {
 
+    val db = Firebase.firestore
+
     private lateinit var binding: ActivityMainBinding
+    private lateinit var bindingSetting: FragmentSettingsBinding
+
+    private lateinit var username: String
+    private var score = 0       //TODO: Add db query (Score)
+    private var scoreChoose = 0 //TODO: Add db query (ScoreChoose)
+    private var scorePair = 0   //TODO: Add db query (ScorePair)
+    private var scoreType = 0   //TODO: Add db query (ScoreType)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
             R.id.appHome, R.id.morse2text, R.id.text2morse
-        ))
-        //setupActionBarWithNavController(navController, appBarConfiguration)
-        //navView.setupWithNavController(navController)
-
-        //val navController2 = findNavController(R.id.nav_host_fragment_activity_main)
-
-        /*findViewById<Button>(R.id.gotoM2T).setOnClickListener {
-            println("BTN 1")
-            navController.navigate(R.id.action_navigation_home_to_navigation_dashboard)
-        }
-
-        findViewById<Button>(R.id.gotoT2M).setOnClickListener {
-            navController.navigate(R.id.action_navigation_home_to_navigation_notifications)
-        }*/
-
-
+            )
+        )
+        setUsername("test")
     }
 
     //Var declaration
     private var mTxt = ""
 
-
+    fun setUsername(username:String){
+        print("    Username updated! User:")
+        println(username)
+        this.username = username
+    }
     @Suppress("NAME_SHADOWING")
     fun decode(ignoredView: View?){
         //Init
@@ -111,7 +112,6 @@ class MainActivity : AppCompatActivity() {
         mTxt = ""
         out = ""
     }
-
     fun encode(ignoredView: View?){
         //Input
         val editText = findViewById<EditText>(R.id.typeInput)
@@ -149,7 +149,6 @@ class MainActivity : AppCompatActivity() {
         val newSizeInSp = 20
         outputTextView.textSize = newSizeInSp.toFloat()
     }
-
     private fun printAndChange() {
         val previewTextView = findViewById<TextView>(R.id.preview)
         previewTextView.text = mTxt
@@ -157,7 +156,6 @@ class MainActivity : AppCompatActivity() {
         val newSizeInSp = 36
         previewTextView.textSize = newSizeInSp.toFloat()
     }
-
     fun dashClick(ignoredView: View?) {
         //println("DASH")
         mTxt += "-"
@@ -182,5 +180,73 @@ class MainActivity : AppCompatActivity() {
         mTxt = mTxt.dropLast(1)
         printAndChange()
     }
+    fun setScore(score: Int, scoreMode:String) {
+        //TODO: Add Username input
+        //val user = "Sapoleone"
+        val user = username
+        print("User")
+        println(username)
+        var data = hashMapOf(
+            "user" to user,
+            "score" to score,
+        )
 
+        if(scoreMode == "c"){
+            // Create a new user with a first and last name
+            data = hashMapOf(
+                "user" to user,
+                "scoreChoose" to score,
+            )
+        }
+        if(scoreMode == "p"){
+            data = hashMapOf(
+                "user" to user,
+                "scorePair" to score,
+            )
+        }
+        if(scoreMode == "t"){
+            data = hashMapOf(
+                "user" to user,
+                "scoreType" to score,
+            )
+        }
+
+        // Add a new document with a generated ID
+        db.collection("users").document(user)
+            .set(data)
+            .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot successfully written!") }
+            .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error adding document", e) }
+        this.score = score
+    }
+    fun getScore(scoreMode:String): Int {
+        if(scoreMode == "c"){
+            return scoreChoose
+        }
+        if(scoreMode == "p"){
+            return scorePair
+        }
+        if(scoreMode == "t"){
+            return scoreType
+        }
+        return -1
+    }
+    fun sendInput(ignoredView: View?) {
+        //val user = bindingSetting.inputUser.text.toString()
+        val inputUser = findViewById<EditText>(R.id.inputUser)
+        val user = inputUser.text.toString()
+
+        /*bindingSetting.inputUser.setOnClickListener {
+            println("Username sent!")
+            println(user)
+            setUsername(user)
+        }*/
+
+        println("    Username sent!")
+        println(user)
+        //setUsername(user)
+
+        print("    Username updated! User:")
+        println(user)
+        username = user
+    }
 }
