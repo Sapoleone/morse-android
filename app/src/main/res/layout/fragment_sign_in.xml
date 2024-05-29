@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.SignInFragment">
+
+    <TextView
+        android:id="@+id/login_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/sign_in"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/username"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/backFromSignIn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/back"
+        android:textAlignment="center"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/successful_signIn"
+        android:layout_width="274dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_correct_background"
+        android:fadingEdge="horizontal|vertical"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/lorem_ipsum"
+        android:textAlignment="center"
+        android:textColor="@color/material_dynamic_neutral20"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
+
+    <TextView
+        android:id="@+id/output_userTag"
+        android:layout_width="274dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_yellow_background"
+        android:fadingEdge="horizontal|vertical"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/lorem_ipsum"
+        android:textAlignment="center"
+        android:textColor="@color/material_dynamic_neutral20"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/successful_signIn" />
+
+    <EditText
+        android:id="@+id/inputUsername"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="34dp"
+        android:autoLink="none"
+        android:hint="@string/insert_username"
+        android:inputType="text"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/login_header"
+        android:autofillHints="" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
