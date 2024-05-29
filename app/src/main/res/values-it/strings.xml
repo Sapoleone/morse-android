@@ -23,4 +23,8 @@
     <string name="translate_info">Vuoi tradurre dal Morse o dal Testo?</string>
     <string name="text_to_morse">Testo a Morse</string>
     <string name="morse_to_text">Morse a Testo</string>
+    <string name="you_re_not_logged_in">Non hai fatto il login!</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Registrati</string>
+    <string name="log_out">Esci</string>
 </resources>

@@ -38,7 +38,7 @@
     <TextView
         android:id="@+id/choosePrompt"
         android:layout_width="wrap_content"
-        android:layout_height="121dp"
+        android:layout_height="150dp"
         android:layout_marginTop="190dp"
         android:gravity="center"
         android:text="@string/wait"
@@ -54,7 +54,7 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:layout_marginTop="150dp"
-        android:text="An s 1"
+        android:text="Ans 1"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/btnAns3"
         app:layout_constraintEnd_toStartOf="@+id/btnAns2"
@@ -116,8 +116,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/scoreboard"
-        android:layout_width="113dp"
+        android:id="@+id/scoreboard_choose"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="120dp"
         android:gravity="center"

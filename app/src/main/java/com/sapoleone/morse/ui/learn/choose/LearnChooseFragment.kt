@@ -1,4 +1,18 @@
-@file:Suppress("SameParameterValue")
+/*This file is part of morseApp.
+
+ *morseApp is free software: you can redistribute it and/or modify
+ *it under the terms of the GNU General Public License version 3
+ *published by the Free Software Foundation
+
+ *morseApp is distributed in the hope that it will be useful,
+ *but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *GNU General Public License for more details.
+
+ *You should have received a copy of the GNU General Public License
+ *along with morseApp.  If not, see <http://www.gnu.org/licenses/>.*/
+
+@file:Suppress("SameParameterValue", "PrivatePropertyName")
 
 package com.sapoleone.morse.ui.learn.choose
 
@@ -21,9 +35,20 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+@Suppress("SameParameterValue", "SameParameterValue")
 class LearnChooseFragment : Fragment() {
     //val db = Firebase.firestore
     private lateinit var binding: FragmentLearnChooseBinding
+
+    private val ciphTxt = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+    private val ciphMor = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
+
+    private var alphabetLength = 0
+    private var score = 0
+
+    private lateinit var session_id:String
+
+    private var canBe = 0 //0: Both;  1: OnlyMorse;  2: OnlyText
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,18 +63,27 @@ class LearnChooseFragment : Fragment() {
         binding.sendSettingsChoose.setOnClickListener {
             changeCanBe()
         }
-
+        alphabetLength = ciphMor.size
+        println(ciphMor[25])
         gameMain()
         return binding.root
     }
-    
-    
-    private val ciphTxt = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-    private val ciphMor = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
-    //private var score = (activity as MainActivity).getScore("c")
-    private var score = 0
-    private var canBe = 0 //0: Both;  1: OnlyMorse;  2: OnlyText
+    override fun onAttach(context: android.content.Context) {
+        super.onAttach(context)
+        updateScore()
+    }
 
+    private fun updateScore() {
+        println("start upScore")
+        session_id = (requireActivity() as MainActivity).getSessionId()
+        if(session_id != "_void_"){
+            score = (requireActivity() as MainActivity).getScore("c")
+            println("  score: $score")
+            println("exit  upScore")
+        } else {
+            println("exit  upScore (session_id: _void_)")
+        }
+    }
     private fun gameMain(){
         val isPromptMorse : Boolean = when (canBe) {
             0 -> {
@@ -136,7 +170,7 @@ class LearnChooseFragment : Fragment() {
         val rand = Random.nextInt(0, 10)
         val waitTime : Long = 1000
         val waitWrongTime : Long = 2500
-        binding.scoreboard.text = "Score: $score"
+        binding.scoreboardChoose.text = "Score: $score"
 
         binding.choosePrompt.text = prompt
 
@@ -201,7 +235,7 @@ class LearnChooseFragment : Fragment() {
     }
 
     private fun selectTextPrompt(): String {
-        val rand = Random.nextInt(0, 25)
+        val rand = Random.nextInt(0, 26)
         val prompt = ciphTxt[rand]
         print("Prompt selected: Text , ")
         print(rand)
@@ -211,7 +245,7 @@ class LearnChooseFragment : Fragment() {
     }
 
     private fun selectMorsePrompt(): String {
-        val rand = Random.nextInt(0, 25)
+        val rand = Random.nextInt(0, 26)
         val prompt = ciphMor[rand]
         print("Prompt selected: Morse, ")
         print(rand)
@@ -225,7 +259,7 @@ class LearnChooseFragment : Fragment() {
 
         var i = 0
         while (i < 3){
-            val rand = Random.nextInt(0, 25)
+            val rand = Random.nextInt(0, 26)
             val text = ciphTxt[rand]
 
             print("Prompt selected: Text , ")
@@ -252,7 +286,7 @@ class LearnChooseFragment : Fragment() {
 
         var i = 0
         while (i < 3){
-            val rand = Random.nextInt(0, 25)
+            val rand = Random.nextInt(0, 26)
             val text = ciphMor[rand]
 
             print("Prompt selected: Morse, ")
@@ -308,7 +342,9 @@ class LearnChooseFragment : Fragment() {
 
 
     override fun onDestroyView() {
-        (activity as MainActivity).setScore(score, "c")
+        if(session_id != "_void_" && score != 0) {
+            (activity as MainActivity).setScore(score, "c")
+        }
         super.onDestroyView()
     }
 }

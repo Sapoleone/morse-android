@@ -102,5 +102,30 @@
         <action
             android:id="@+id/action_settingsFragment_to_appHome"
             app:destination="@id/appHome" />
+        <action
+            android:id="@+id/action_settingsFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.sapoleone.morse.ui.login.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_appHome"
+            app:destination="@id/appHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.sapoleone.morse.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_appHome"
+            app:destination="@id/appHome" />
     </fragment>
 </navigation>

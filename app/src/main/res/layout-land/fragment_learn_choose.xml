@@ -112,7 +112,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/scoreboard"
+        android:id="@+id/scoreboard_choose"
         android:layout_width="113dp"
         android:layout_height="50dp"
         android:layout_marginTop="104dp"

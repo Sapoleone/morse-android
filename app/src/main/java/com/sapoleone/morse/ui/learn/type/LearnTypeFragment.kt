@@ -1,8 +1,23 @@
-@file:Suppress("SameParameterValue")
+/*This file is part of morseApp.
+
+ *morseApp is free software: you can redistribute it and/or modify
+ *it under the terms of the GNU General Public License version 3
+ *published by the Free Software Foundation
+
+ *morseApp is distributed in the hope that it will be useful,
+ *but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *GNU General Public License for more details.
+
+ *You should have received a copy of the GNU General Public License
+ *along with morseApp.  If not, see <http://www.gnu.org/licenses/>.*/
+@file:Suppress("SameParameterValue", "KotlinConstantConditions", "LocalVariableName")
 
 package com.sapoleone.morse.ui.learn.type
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +26,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.textfield.TextInputEditText
 import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentLearnTypeBinding
 import kotlinx.coroutines.CoroutineScope
@@ -25,6 +39,9 @@ class LearnTypeFragment : Fragment() {
 
     private lateinit var binding: FragmentLearnTypeBinding
     private lateinit var viewModel: LearnTypeViewModel
+    private val ciphTxt = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+    private val ciphMor = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
+    private var score:Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +63,9 @@ class LearnTypeFragment : Fragment() {
         }
 
     }
-    private var score:Int = 0
+
+
+
     private fun printWrong(waitTime: Long){
         score -= 50
 
@@ -73,22 +92,19 @@ class LearnTypeFragment : Fragment() {
         }
     }
     private fun selectPrompt(): String {
-        val ciph1 = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-        val ciph2 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
-
         val rand = Random.nextInt(0, 50)
         var prompt = ""
         print("Rand: ")
         println(rand)
         if (rand <= 25){
-            prompt = ciph1[rand]
-            print("Prompt selected: Text , ciph1, ")
+            prompt = ciphTxt[rand]
+            print("Prompt selected: Text , ciphTxt, ")
             print(rand)
             print(", ")
         }
         else{
-            prompt = ciph2[rand - 25]
-            print("Prompt selected: Morse, ciph2, ")
+            prompt = ciphMor[rand - 25]
+            print("Prompt selected: Morse, ciphMor, ")
             print(rand-25)
             print(", ")
         }
@@ -96,42 +112,60 @@ class LearnTypeFragment : Fragment() {
         return prompt
     }
 
+    @SuppressLint("SetTextI18n")
     private fun printPrompt(prompt : String){
         //val promptOutput = binding.typePrompt
         //promptOutput.text = prompt
         binding.typePrompt.text = prompt
+        binding.scoreboardType!!.text = "Score: $score"
         println(prompt)
     }
 
-    private fun verifyInput(/*input: TextInputEditText,*/ prompt: String, index : Int, isMorse : Boolean) : Boolean {
-        val ciph1 = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-        val ciph2 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
+    private fun verifyInput(prompt: String, inputIndex : Int, isMorse : Boolean) : Boolean {
+        var isCorrect = false
 
-        print("Index: ")
-        println(index)
+        val debug_string = buildString {
+            append("Prompt: ")
+            append(prompt)
+            append("inputIndex: ")
+            append(inputIndex)
+            append("isMorse: ")
+            append(isMorse)
+        }
 
-        val isCorrect : Boolean = if (!isMorse){
-            ciph2[index] == prompt
-        } else{
-            ciph1[index] == prompt
+        println(debug_string)
+
+        if (!isMorse && prompt == ciphMor[inputIndex]){
+            isCorrect = true
+        }
+
+        if ( isMorse && prompt == ciphTxt[inputIndex]){
+            isCorrect = true
         }
 
         return isCorrect
     }
 
-    private fun waitForInput(prompt : String) : TextInputEditText {
-        val input = binding.typeInput
+    private fun waitForInput(prompt : String) : String {
+        val input:String = binding.typeInput.toString()
+
         binding.typeInput.setOnClickListener {
             val index  = findPromptIndex(prompt)
             val isMorse = findPromptIsMorse(prompt)
-            val result = verifyInput(/*input,*/ prompt, index, isMorse)
-            if(result){
-                println("Correct")
-                printCorrect(1000)
-            }
-            else{
-                println("Wrong")
-                printWrong(1000)
+            val inputIndex  = findPromptIndex(input)
+            if(inputIndex != -1){
+                val result = verifyInput(/*input,*/ prompt, inputIndex, isMorse)
+                if(result){
+                    println("Correct")
+                    printCorrect(1000)
+                }
+                else{
+                    println("Wrong")
+                    printWrong(1000)
+                }
+            } else {
+               /* println("Cos'hai scritto?")
+               printWrong(1000)*/
             }
             typeGameMain()
         }
@@ -139,18 +173,15 @@ class LearnTypeFragment : Fragment() {
     }
 
     private fun findPromptIsMorse(prompt: String): Boolean {
-        val ciph1 = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-        val ciph2 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
-
         var i = 0
         while(i <= 50){
             if (i <= 25){
-                if(prompt == ciph1[i]){
+                if(prompt == ciphTxt[i]){
                     return true
                 }
             }
             else{
-                if(prompt == ciph2[i-25]){
+                if(prompt == ciphMor[i-25]){
                     return false
 
                 }
@@ -161,28 +192,48 @@ class LearnTypeFragment : Fragment() {
     }
 
     private fun findPromptIndex(prompt: String): Int {
-        val ciph1 = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-        val ciph2 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
-        val iTemp = -1
-
+        var halt = 0
         var i = 0
-        while(i <= 50){
-            if (i <= 25){
-                if(prompt == ciph1[i]){
-                    return i
-                }
-            }
-            else{
-                if(prompt == ciph2[i-25]){
-                    return i-25
+        while(i < ciphMor.size && halt == 0){
 
-                }
+            val cTxtI = ciphTxt[i]
+            val cMorI = ciphMor[i]
+            Log.w("tag", "CICLO 1   prompt:$prompt, ciphTxt:$cTxtI, ciphTxt:$cMorI, i:$i, halt:$halt")
+
+            if(prompt == ciphTxt[i]){
+                Log.w("tag", "$prompt == $cTxtI")
+                halt = 1
+                break
+            } else {
+                Log.w("tag", "$prompt != $cTxtI")
             }
             i++
         }
-        return iTemp
+        i = 0
+        while(i < ciphTxt.size && halt == 0){
+            val cTxtI = ciphTxt[i]
+            val cMorI = ciphMor[i]
+            Log.w("tag", "CICLO 2   prompt:$prompt, ciphTxt:$cTxtI, ciphTxt:$cMorI, i:$i, halt:$halt")
+
+            if(prompt == ciphMor[i]){
+                Log.w("tag", "$prompt == $cMorI")
+                halt = 1
+                break
+            } else{
+                Log.w("tag", "$prompt != $cMorI")
+            }
+            i++
+        }
+        return if(halt == 0){
+            Log.w("tag", "returning -1")
+            -1
+        } else{
+            Log.w("tag", "returning $i")
+            i
+        }
+
     }
-    
+
     private fun typeGameMain(){
         //while (true){
             val prompt = selectPrompt()
