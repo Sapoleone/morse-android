@@ -1,7 +1,6 @@
 **FEATURES:**
 - Text to Morse translation
 - Morse to text translation
-- 
 - Learn, Choose
 
 
@@ -11,4 +10,4 @@
 
 
 **BUGS:**
-If you find a bug please report it.
+- If you find a bug please report it.
