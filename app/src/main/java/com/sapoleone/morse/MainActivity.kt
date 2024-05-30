@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
     fun startSession(username_fun: String, mode: Int): String {
         return runBlocking {  // Modificato per gestire le operazioni asincrone
             if (mode == 0) {
+                //Sign IN
                 println("startSession()")
 
                 username = username_fun
@@ -97,6 +98,7 @@ class MainActivity : AppCompatActivity() {
                     "-2"
                 }
             } else {
+                //Login
                 if(userExist(username_fun)){
                     session_id = username_fun
                     //username = username_fun
@@ -286,17 +288,18 @@ class MainActivity : AppCompatActivity() {
         return session_id
     }
     private fun saveSession(){
+        println("Session Saved!")
         val sharedPreferences = getSharedPreferences("my_shared_prefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("session_id", session_id)
         editor.apply()
     }
     fun getSession(): String{
-        if (session_id == "") {
+        if (session_id == "_void_") {
             val sharedPreferences = getSharedPreferences("my_shared_prefs", Context.MODE_PRIVATE)
             session_id = sharedPreferences.getString("session_id", null).toString()
 
-            if (session_id != "") {
+            if (session_id != "_void_") {
                 // Usa sessionId
                 println("    Session ID: $session_id")
             }

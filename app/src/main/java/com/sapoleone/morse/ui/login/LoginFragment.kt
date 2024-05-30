@@ -78,6 +78,7 @@ class LoginFragment : Fragment() {
                     if (user_id != "-3"){
                         print("    user_id:")
                         println(user_id)
+
                         printLoginConfirmed(user_id)
 
                     } else {
