@@ -46,6 +46,8 @@ class LearnChooseFragment : Fragment() {
     private var alphabetLength = 0
     private var score = 0
 
+    private var isFirstIteration = true
+
     private lateinit var session_id:String
 
     private var canBe = 0 //0: Both;  1: OnlyMorse;  2: OnlyText
@@ -63,15 +65,16 @@ class LearnChooseFragment : Fragment() {
         binding.sendSettingsChoose.setOnClickListener {
             changeCanBe()
         }
+
         alphabetLength = ciphMor.size
         println(ciphMor[25])
         gameMain()
         return binding.root
     }
-    override fun onAttach(context: android.content.Context) {
+    /*override fun onAttach(context: android.content.Context) {
         super.onAttach(context)
         updateScore()
-    }
+    }*/
 
     private fun updateScore() {
         println("start upScore")
@@ -98,7 +101,10 @@ class LearnChooseFragment : Fragment() {
                 false
             }
         }
-
+        if(isFirstIteration){
+            updateScore()
+            isFirstIteration = false
+        }
         //Generate the question(Prompt)
         val prompt : String = if (isPromptMorse){
             selectMorsePrompt()
@@ -134,6 +140,11 @@ class LearnChooseFragment : Fragment() {
         println(array[(btnCode + rand)%4])
         score -= 50
 
+        //On run update# 24/06/01
+        if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0) {
+            (activity as MainActivity).setScore(score, "c")
+        }
+
         binding.isCorrectChoose.isVisible = true
         binding.isCorrectChoose.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_wrong_background)
         binding.isCorrectChoose.text = buildString {
@@ -154,6 +165,11 @@ class LearnChooseFragment : Fragment() {
         print("Correct, you selected: ")
         println(array[(btnCode + rand)%4])
         score += 100
+
+        //On run update# 24/06/01
+        if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0) {
+            (activity as MainActivity).setScore(score, "c")
+        }
 
         binding.isCorrectChoose.isVisible = true
         binding.isCorrectChoose.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_correct_background)
@@ -342,7 +358,7 @@ class LearnChooseFragment : Fragment() {
 
 
     override fun onDestroyView() {
-        if(session_id != "_void_" && score != 0) {
+        if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0) {
             (activity as MainActivity).setScore(score, "c")
         }
         super.onDestroyView()

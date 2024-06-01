@@ -57,8 +57,8 @@ class HomeFragment : Fragment() {
         binding.gotoLearn.setOnClickListener {
             findNavController().navigate(R.id.action_appHome_to_learnHomeFragment)
         }
-        binding.btnSettings.setOnClickListener {
-            findNavController().navigate(R.id.action_appHome_to_settingsFragment)
+        binding.btnAccount?.setOnClickListener {
+            findNavController().navigate(R.id.action_appHome_to_accountFragment)
         }
 
         val session_id = (requireActivity() as MainActivity).getSession()
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     fun updateUser(session_id:String){
-        if(session_id != "_void_"){
+        if(session_id != "_void_" && session_id != "null" && session_id != ""){
             println("Updated displayed user!, HOME")
             binding.currentUser!!.text = "User: $session_id"
         } else {

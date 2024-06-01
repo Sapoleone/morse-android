@@ -11,7 +11,7 @@
 
  *You should have received a copy of the GNU General Public License
  *along with morseApp.  If not, see <http://www.gnu.org/licenses/>.*/
-@file:Suppress("LiftReturnOrAssignment")
+@file:Suppress("LiftReturnOrAssignment", "UNUSED_PARAMETER", "PrivatePropertyName", "LocalVariableName")
 
 package com.sapoleone.morse
 
@@ -24,8 +24,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.sapoleone.morse.databinding.ActivityMainBinding
@@ -45,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     //private lateinit var bindingSetting: FragmentSettingsBinding
 
     private lateinit var username: String
+
     private var session_id = "_void_"
 
     private var score = 0       //TODO: Add db query (Score)
@@ -58,12 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-            R.id.appHome, R.id.morse2text, R.id.text2morse
-            )
-        )
+
         session_id = getSession()
 
     }
@@ -299,7 +293,7 @@ class MainActivity : AppCompatActivity() {
             val sharedPreferences = getSharedPreferences("my_shared_prefs", Context.MODE_PRIVATE)
             session_id = sharedPreferences.getString("session_id", null).toString()
 
-            if (session_id != "_void_") {
+            if (session_id != "_void_" && session_id != "null" && session_id != "") {
                 // Usa sessionId
                 println("    Session ID: $session_id")
             }
@@ -448,134 +442,4 @@ class MainActivity : AppCompatActivity() {
         mTxt = mTxt.dropLast(1)
         printAndChange()
     }
-
-    //TODO: REMOVE Deprecated Code
-    /*fun sendInput(ignoredView: View?) {
-        //val user = bindingSetting.inputUser.text.toString()
-        val inputUser = findViewById<EditText>(R.id.inputUUID)
-        val user = inputUser.text.toString()
-
-        /*bindingSetting.inputUser.setOnClickListener {
-            println("Username sent!")
-            println(user)
-            setUsername(user)
-        }*/
-
-        println("    Username sent!")
-        println(user)
-        //setUsername(user)
-
-        print("    Username updated! User:")
-        println(user)
-        username = user
-    }
-    fun setUsername(username:String){
-        print("    Username updated! User:")
-        println(username)
-        this.username = username
-    }
-    /*fun startSession(UUID: String, mode:Int): String{
-        if(mode == 0){
-            println("    startSession()")
-            val userTag = createUserTag(UUID)
-            if (userTag != "-2"){
-                session_id = buildString {
-                    append(UUID)
-                    append("#")
-                    append(userTag)
-                }
-                print("    new_session_id: ")
-                println(session_id)
-            }
-            else{
-                return "-2"
-            }
-        }
-        else{
-            session_id = UUID
-        }
-        return session_id
-    }
-    fun createUserTag(UUID: String):String{
-        var intUserTag:Int
-        val strUserTag:String
-        println("      enter createUserTag()")
-        val lastUserTag = findLastUserTag(UUID)
-        if (lastUserTag != -2){
-            strUserTag = formatUserTag(lastUserTag)
-            //Format example: 001; 002; 189; 255; 256; 010; etc...
-            println("      exit  createUserTag()")
-            return strUserTag
-        }
-        return "-2"
-    }
-    fun formatUserTag(userTag_unformatted:Int): String {
-        val userTag_formatted:String
-        print("        enter formatUserTag() ")
-        println(userTag_unformatted)
-        if(userTag_unformatted < 10){
-            userTag_formatted = buildString {
-                append("00")
-                append(userTag_unformatted)
-            }
-        }
-        else if (userTag_unformatted < 100) {
-            userTag_formatted = buildString {
-                append("0")
-                append(userTag_unformatted)
-            }
-        }
-        else{
-            userTag_formatted = userTag_unformatted.toString()
-        }
-        print("        exit  formatUserTag() ")
-        println(userTag_formatted)
-        return userTag_formatted
-    }
-    fun findLastUserTag(UUID: String): Int {
-        var i = 1
-        while (true){
-            val formatted_i = formatUserTag(i)
-            val documentName = buildString {
-                append(UUID)
-                append("#")
-                append(formatted_i)
-            }
-            print("          collection:")
-            print("users")
-            print(", document:")
-            print(documentName)
-            print(", i:")
-            print(i)
-            print(", ctrlVar:")
-            println(dbControlVar)
-            db.collection("users").document(documentName).get()
-                .addOnSuccessListener { document ->
-                    if (document.exists()) {
-
-                    } else {
-                        dbControlVar = -1
-                    }
-                }
-                .addOnFailureListener { exeption ->
-                    print("          WARN: Failure:")
-                    print(" collection:")
-                    print("users")
-                    print(", document:")
-                    print(documentName)
-                    print(", i:")
-                    print(i)
-                    print(", ctrlVar:")
-                    println(dbControlVar)
-                }
-            if(dbControlVar == -1){
-                dbControlVar = 0
-                return i
-            }
-            if(i >= 999){
-                return -2
-            }
-            i++
-        }
-    }*/*/
 }

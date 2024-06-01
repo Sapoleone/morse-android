@@ -22,11 +22,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sapoleone.morse.MainActivity
 import com.sapoleone.morse.R
-import com.sapoleone.morse.databinding.FragmentSettingsBinding
+import com.sapoleone.morse.databinding.FragmentAccountBinding
 
-class SettingsFragment : Fragment() {
+class AccountFragment : Fragment() {
 
-    private var _binding: FragmentSettingsBinding? = null
+    private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -34,20 +34,20 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentAccountBinding.inflate(inflater, container, false)
 
         binding.backFromSettings.setOnClickListener {
-            findNavController().navigate(R.id.action_settingsFragment_to_appHome)
+            findNavController().navigate(R.id.action_accountFragment_to_appHome)
         }
         binding.loginBt.setOnClickListener {
-            findNavController().navigate(R.id.action_settingsFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
         }
         binding.signInBt.setOnClickListener {
-            findNavController().navigate(R.id.action_settingsFragment_to_signInFragment)
+            findNavController().navigate(R.id.action_accountFragment_to_signInFragment)
         }
         binding.logOutBt.setOnClickListener {
             (requireActivity() as MainActivity).destroySession()
-            findNavController().navigate(R.id.action_settingsFragment_to_appHome)
+            findNavController().navigate(R.id.action_accountFragment_to_appHome)
         }
 
         return binding.root

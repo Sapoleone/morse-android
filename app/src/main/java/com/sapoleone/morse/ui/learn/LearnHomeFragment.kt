@@ -44,13 +44,14 @@ class LearnHomeFragment : Fragment() {
             binding.gotoLearn2Choose.setOnClickListener{
                 findNavController().navigate(R.id.action_learnHomeFragment_to_learnChooseFragment)
             }
+            /*
             binding.gotoLearn2Pair.setOnClickListener {
-                println("CIAO, pair")
                 findNavController().navigate(R.id.action_learnHomeFragment_to_learnPairFragment)
             }
             binding.gotoLearn2Type.setOnClickListener {
                 findNavController().navigate(R.id.action_learnHomeFragment_to_learnTypeFragment)
             }
+            */
             //BACK button
             binding.backFromLearnHome.setOnClickListener {
                 findNavController().navigate(R.id.appHome)

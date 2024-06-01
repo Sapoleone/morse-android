@@ -15,8 +15,8 @@
             android:id="@+id/action_appHome_to_translateHomeFragment"
             app:destination="@id/translateHomeFragment" />
         <action
-            android:id="@+id/action_appHome_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_appHome_to_accountFragment"
+            app:destination="@id/accountFragment" />
     </fragment>
 
     <fragment
@@ -95,18 +95,18 @@
             app:destination="@id/morse2text" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.sapoleone.morse.ui.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
+        android:id="@+id/accountFragment"
+        android:name="com.sapoleone.morse.ui.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
         <action
-            android:id="@+id/action_settingsFragment_to_appHome"
+            android:id="@+id/action_accountFragment_to_appHome"
             app:destination="@id/appHome" />
         <action
-            android:id="@+id/action_settingsFragment_to_signInFragment"
+            android:id="@+id/action_accountFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
         <action
-            android:id="@+id/action_settingsFragment_to_loginFragment"
+            android:id="@+id/action_accountFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
 
