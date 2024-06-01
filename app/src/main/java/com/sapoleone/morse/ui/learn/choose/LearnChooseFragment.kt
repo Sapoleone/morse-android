@@ -154,6 +154,7 @@ class LearnChooseFragment : Fragment() {
             append("   ")
             append(array[3])
         }
+        //aaa
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(waitTime)
