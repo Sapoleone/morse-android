@@ -116,18 +116,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/scoreboard_choose"
+        android:id="@+id/scoreboardChoose"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="-15dp"
         android:gravity="center"
         android:text="@string/score_0"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/highScoreChoose" />
 
     <TextView
         android:id="@+id/isCorrectChoose"
@@ -154,12 +153,12 @@
         android:buttonTint="?attr/colorPrimary"
         android:checked="true"
         android:clickable="true"
+        android:focusable="true"
         android:fontFamily="monospace"
         android:text=" Text"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox_morse"
@@ -180,10 +179,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Save"
         android:onClick="changeCanBe"
+        android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_morse" />
+
+    <TextView
+        android:id="@+id/highScoreChoose"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="88dp"
+        android:gravity="center"
+        android:text="@string/highest_score_0"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

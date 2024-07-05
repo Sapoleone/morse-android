@@ -42,8 +42,9 @@ class LearnHomeFragment : Fragment() {
 
         //Buttons
             binding.gotoLearn2Choose.setOnClickListener{
-                findNavController().navigate(R.id.action_learnHomeFragment_to_learnChooseFragment)
+                findNavController().navigate(R.id.action_learnHomeFragment_to_learnChooseHomeFragment)
             }
+        //DON'T REMOVE! - Developing In Progress
             /*
             binding.gotoLearn2Pair.setOnClickListener {
                 findNavController().navigate(R.id.action_learnHomeFragment_to_learnPairFragment)
@@ -52,6 +53,7 @@ class LearnHomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_learnHomeFragment_to_learnTypeFragment)
             }
             */
+
             //BACK button
             binding.backFromLearnHome.setOnClickListener {
                 findNavController().navigate(R.id.appHome)

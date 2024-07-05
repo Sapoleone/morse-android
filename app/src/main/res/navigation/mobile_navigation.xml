@@ -43,14 +43,14 @@
         android:label="fragment_learn"
         tools:layout="@layout/fragment_learn" >
         <action
-            android:id="@+id/action_learnHomeFragment_to_learnChooseFragment"
-            app:destination="@id/learnChooseFragment" />
-        <action
             android:id="@+id/action_learnHomeFragment_to_learnPairFragment"
             app:destination="@id/learnPairFragment" />
         <action
             android:id="@+id/action_learnHomeFragment_to_learnTypeFragment"
             app:destination="@id/learnTypeFragment" />
+        <action
+            android:id="@+id/action_learnHomeFragment_to_learnChooseHomeFragment"
+            app:destination="@id/learnChooseHomeFragment" />
     </fragment>
 
     <fragment
@@ -59,8 +59,8 @@
         android:label="fragment_learn_choose"
         tools:layout="@layout/fragment_learn_choose" >
         <action
-            android:id="@+id/action_learnChooseFragment_to_learnHomeFragment"
-            app:destination="@id/learnHomeFragment" />
+            android:id="@+id/action_learnChooseFragment_to_learnChooseHomeFragment"
+            app:destination="@id/learnChooseHomeFragment" />
     </fragment>
 
     <fragment
@@ -127,5 +127,29 @@
         <action
             android:id="@+id/action_loginFragment_to_appHome"
             app:destination="@id/appHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/learnChooseHomeFragment"
+        android:name="com.sapoleone.morse.ui.learn.choose.LearnChooseHomeFragment"
+        android:label="fragment_learn_choose_home"
+        tools:layout="@layout/fragment_learn_choose_home" >
+        <action
+            android:id="@+id/action_learnChooseHomeFragment_to_infiniChooseFragment"
+            app:destination="@id/infiniChooseFragment" />
+        <action
+            android:id="@+id/action_learnChooseHomeFragment_to_learnChooseFragment"
+            app:destination="@id/learnChooseFragment" />
+        <action
+            android:id="@+id/action_learnChooseHomeFragment_to_learnHomeFragment"
+            app:destination="@id/learnHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infiniChooseFragment"
+        android:name="com.sapoleone.morse.ui.learn.choose.InfiniChooseFragment"
+        android:label="fragment_infini_choose"
+        tools:layout="@layout/fragment_infini_choose" >
+        <action
+            android:id="@+id/action_infiniChooseFragment_to_learnChooseHomeFragment"
+            app:destination="@id/learnChooseHomeFragment" />
     </fragment>
 </navigation>

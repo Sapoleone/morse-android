@@ -15,24 +15,40 @@
 
 package com.sapoleone.morse
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.sapoleone.morse.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import java.io.IOException
 
 @Suppress("MemberVisibilityCanBePrivate")
 class MainActivity : AppCompatActivity() {
@@ -46,11 +62,33 @@ class MainActivity : AppCompatActivity() {
 
     private var session_id = "_void_"
 
-    private var score = 0       //TODO: Add db query (Score)
+    private var score = 0
 
     private var scoreChoose = 0
     private var scorePair = 0
     private var scoreType = 0
+    private var scoreHighChoose = 0
+
+    //TODO: CHANGE VERSION
+    private val currentVersion =    2 //Version: x.0.0
+    private val currentDecimal =    0 //Version: 0.x.0
+    private val currentSubdecimal = 1 //Version: 0.0.x
+
+    private var currentVersionFull = buildString {
+        append(currentVersion)
+        append(".")
+        append(currentDecimal)
+        append(".")
+        append(currentSubdecimal)
+    }
+    private lateinit var latestVersionFull:String
+    private var latestVersion    = -5
+    private var latestDecimal    = -5
+    private var latestSubdecimal = -5
+    
+    private lateinit var downloadUrl:String
+    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +96,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.i("version","CURRENT VERSION: $currentVersionFull")
+        checkForUpdate()
         session_id = getSession()
+
+        scoreChoose = funGetScoreDb("c")
+        scorePair = funGetScoreDb("p")
+        scoreType = funGetScoreDb("t")
+        scoreHighChoose = funGetScoreDb("hc")
 
     }
 
@@ -122,6 +167,7 @@ class MainActivity : AppCompatActivity() {
             "scoreChoose" to 0,
             "scorePair" to 0,
             "scoreType" to 0,
+            "scoreHighChoose" to 0,
 
             "user" to username,
             "userTag" to userTag,
@@ -172,35 +218,62 @@ class MainActivity : AppCompatActivity() {
     //GET/SET from Fragments
     fun setScore(score: Int, scoreMode:String) {
         val user = session_id
-        println("  Saving new score: $score, Scoremode: $scoreMode")
+        //println("  Saving new score: $score, Scoremode: $scoreMode")
+
         var data = hashMapOf(
             /*"user" to username,
             "userTag" to userTag,*/
-            "scoreChoose" to score,
-            "scorePair" to score,
-            "scoreType" to score,
-
+            "scoreChoose" to scoreChoose,
+            "scorePair" to scorePair,
+            "scoreType" to scoreType,
+            "scoreHighChoose" to scoreHighChoose,
         )
+
 
         if(scoreMode == "c"){
             // Create a new user with a first and last name
             scoreChoose = score
             data = hashMapOf(
                 "scoreChoose" to score,
+                "scorePair" to scorePair,
+                "scoreType" to scoreType,
+                "scoreHighChoose" to scoreHighChoose,
+            )
+        }
+        if(scoreMode == "hc"){
+
+            scoreHighChoose = score
+            data = hashMapOf(
+                "scoreChoose" to scoreChoose,
+                "scorePair" to scorePair,
+                "scoreType" to scoreType,
+                "scoreHighChoose" to score,
             )
         }
         if(scoreMode == "p"){
             scorePair = score
             data = hashMapOf(
+                "scoreChoose" to scoreChoose,
                 "scorePair" to score,
+                "scoreType" to scoreType,
+                "scoreHighChoose" to scoreHighChoose,
             )
         }
         if(scoreMode == "t"){
             scoreType = score
             data = hashMapOf(
+                "scoreChoose" to scoreChoose,
+                "scorePair" to scorePair,
                 "scoreType" to score,
+                "scoreHighChoose" to scoreHighChoose,
             )
         }
+
+        Log.i("db", "Saved New Value (scoreMode:$scoreMode, value: $score, session_id: $session_id)")
+        Log.d("db", "c: $scoreChoose")
+        Log.d("db", "p: $scorePair")
+        Log.d("db", "t: $scoreType")
+        Log.d("db", "hc: $scoreHighChoose")
 
         // Add a new document with a generated ID
         db.collection("users").document(user)
@@ -210,29 +283,49 @@ class MainActivity : AppCompatActivity() {
         this.score = score
     }
     fun getScore(scoreMode:String): Int {
+        Log.i("query_global_var", "Asked for: scoremode $scoreMode")
+
         if(scoreMode == "c"){
+            Log.i("query_global_var", "Scoremode '$scoreMode' is $scoreChoose")
             if(scoreChoose == 0){
+                Log.i("query_global_var", "Scoremode '$scoreMode' is 0, querying db...")
                 scoreChoose = funGetScoreDb("c")
             }
             return scoreChoose
         }
+
         if(scoreMode == "p"){
+            Log.i("query_global_var", "Scoremode '$scoreMode' is $scorePair")
             if(scorePair == 0){
+                Log.i("query_global_var", "Scoremode '$scoreMode' is 0, querying db...")
                 scorePair = funGetScoreDb("p")
             }
             return scorePair
         }
+
         if(scoreMode == "t"){
+            Log.i("query_global_var", "Scoremode '$scoreMode' is $scoreType")
             if(scoreType == 0){
+                Log.i("query_global_var", "Scoremode '$scoreMode' is 0, querying db...")
                 scoreType = funGetScoreDb("t")
             }
             return scoreType
+        }
+
+        if(scoreMode == "hc"){//High Choose score
+            Log.i("query_global_var", "Scoremode '$scoreMode' is $scoreHighChoose")
+            if(scoreHighChoose == 0){
+                Log.i("query_global_var", "Scoremode '$scoreMode' is 0, querying db...")
+                scoreHighChoose = funGetScoreDb("hc")
+            }
+            return scoreHighChoose
         }
         return -1
     }
     private fun funGetScoreDb(scoreMode: String): Int {
         return runBlocking {
             val score1 = getScoreDb(scoreMode)
+            Log.i("db", "Get info from db (scoremode: $scoreMode, score: $score1)")
             score1
         }
     }
@@ -242,6 +335,9 @@ class MainActivity : AppCompatActivity() {
         when (scoreMode) {
             "c" -> {
                 fieldName = "scoreChoose"
+            }
+            "hc" -> {
+                fieldName = "scoreHighChoose"
             }
             "p" -> {
                 fieldName = "scorePair"
@@ -441,5 +537,120 @@ class MainActivity : AppCompatActivity() {
         //println("CANC")
         mTxt = mTxt.dropLast(1)
         printAndChange()
+    }
+
+    //Version control
+    private fun checkForUpdate() {
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url("https://www.brusegan.it/samuele_dir/apk/morseApp/lastest-version.php")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@MainActivity, "Connection error", Toast.LENGTH_SHORT).show()
+                    Log.e("UpdateCheck", "Connection error", e)
+                }
+            }
+
+            @Suppress("KotlinConstantConditions")
+            override fun onResponse(call: Call, response: Response) {
+                response.use {
+                    if (response.isSuccessful) {
+                        val body = response.body?.string()
+                        if (body != null) {
+                            try {
+                                val jsonObject = Gson().fromJson(body, JsonObject::class.java)
+                                latestVersionFull = jsonObject.get("versionFull").asString
+                                downloadUrl      = jsonObject.get("url").asString
+                                latestVersion    = jsonObject.get("version").asInt
+                                latestDecimal    = jsonObject.get("decimal").asInt
+                                latestSubdecimal = jsonObject.get("subversion").asInt
+
+                                if (currentVersion <= latestVersion) {
+                                    if(currentVersion < latestVersion) {downloadRequest(downloadUrl)}
+                                    if(currentVersion == latestVersion) {
+                                        if (currentDecimal <= latestDecimal) {
+                                            if(currentDecimal < latestDecimal) {downloadRequest(downloadUrl)}
+                                            if(currentDecimal == latestDecimal) {
+
+                                                if(latestSubdecimal != -2 && latestSubdecimal != -3){
+
+                                                    if (currentSubdecimal <= latestSubdecimal) {
+
+                                                        if(currentSubdecimal < latestSubdecimal) {downloadRequest(downloadUrl)}
+                                                    }
+                                                } else {
+                                                    latestSubdecimal = 0
+                                                    if (currentSubdecimal <= latestSubdecimal) {
+                                                        if(currentSubdecimal < latestSubdecimal) {downloadRequest(downloadUrl)}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                runOnUiThread {
+                                    Toast.makeText(this@MainActivity, "Error parsing update information", Toast.LENGTH_SHORT).show()
+                                    Log.e("UpdateCheck", "Error parsing update information", e)
+                                }
+                            }
+                        } else {
+                            runOnUiThread {
+                                Toast.makeText(this@MainActivity, "Empty response body", Toast.LENGTH_SHORT).show()
+                                Log.e("UpdateCheck", "Empty response body")
+                            }
+                        }
+                    } else {
+                        runOnUiThread {
+                            Toast.makeText(this@MainActivity, "Server returned an error", Toast.LENGTH_SHORT).show()
+                            Log.e("UpdateCheck", "Server returned an error: ${response.code}")
+                        }
+                    }
+                }
+            }
+        })
+    }
+    private fun downloadRequest(url: String){
+        runOnUiThread {
+            AlertDialog.Builder(this@MainActivity)
+                .setTitle(getString(R.string.new_version))
+                .setMessage(getString(R.string.update_string, latestVersionFull, currentVersionFull))
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    downloadAndInstallApk(url)
+                }
+                .setNegativeButton(getString(R.string.no), null)
+                .show()
+        }
+    }
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private fun downloadAndInstallApk(url: String) {
+        val request = DownloadManager.Request(Uri.parse(url))
+        request.setTitle("Downloading update")
+        request.setDescription("Downloading new version of the app")
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "morseApp-latest.apk")
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+
+        val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val downloadId = downloadManager.enqueue(request)
+
+        val onComplete = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                val uri = downloadManager.getUriForDownloadedFile(downloadId)
+                installApk(uri)
+                unregisterReceiver(this)
+            }
+        }
+
+        registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+    }
+    private fun installApk(uri: Uri) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(uri, "application/vnd.android.package-archive")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        startActivity(intent)
     }
 }

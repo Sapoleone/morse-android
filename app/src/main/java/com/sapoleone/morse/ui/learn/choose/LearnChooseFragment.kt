@@ -17,7 +17,9 @@
 package com.sapoleone.morse.ui.learn.choose
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,11 +42,13 @@ class LearnChooseFragment : Fragment() {
     //val db = Firebase.firestore
     private lateinit var binding: FragmentLearnChooseBinding
 
-    private val ciphTxt = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-    private val ciphMor = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
+    private val ciphTxt = arrayOf("A",  "B",    "C",    "D",   "E", "F",    "G",   "H",    "I",  "J",    "K",   "L",    "M",  "N",  "O",   "P",    "Q",    "R",   "S",   "T", "U",   "V",    "W",   "X",    "Y",    "Z",    "CH")
+    private val ciphMor = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "----")
 
     private var alphabetLength = 0
+
     private var score = 0
+    private var highScore = 0
 
     private var isFirstIteration = true
 
@@ -60,7 +64,7 @@ class LearnChooseFragment : Fragment() {
         binding = FragmentLearnChooseBinding.inflate(inflater, container, false)
 
         binding.backFromChoose.setOnClickListener {
-            findNavController().navigate(R.id.action_learnChooseFragment_to_learnHomeFragment)
+            findNavController().navigate(R.id.action_learnChooseFragment_to_learnChooseHomeFragment)
         }
         binding.sendSettingsChoose.setOnClickListener {
             changeCanBe()
@@ -71,17 +75,13 @@ class LearnChooseFragment : Fragment() {
         gameMain()
         return binding.root
     }
-    /*override fun onAttach(context: android.content.Context) {
-        super.onAttach(context)
-        updateScore()
-    }*/
 
     private fun updateScore() {
         println("start upScore")
         session_id = (requireActivity() as MainActivity).getSessionId()
         if(session_id != "_void_"){
-            score = (requireActivity() as MainActivity).getScore("c")
-            println("  score: $score")
+            highScore = (requireActivity() as MainActivity).getScore("hc")
+            println("  hs: $highScore")
             println("exit  upScore")
         } else {
             println("exit  upScore (session_id: _void_)")
@@ -89,21 +89,14 @@ class LearnChooseFragment : Fragment() {
     }
     private fun gameMain(){
         val isPromptMorse : Boolean = when (canBe) {
-            0 -> {
-                isPromptMorse()
-            }
+            0 ->    {   isPromptMorse() }
 
-            1 -> {
-                true
-            }
+            1 ->    {   true            }
 
-            else -> {
-                false
-            }
+            else -> {   false           }
         }
         if(isFirstIteration){
             updateScore()
-            isFirstIteration = false
         }
         //Generate the question(Prompt)
         val prompt : String = if (isPromptMorse){
@@ -125,6 +118,10 @@ class LearnChooseFragment : Fragment() {
 
         array[3] = antiPrompt
         printArray(array, prompt)
+
+        if(isFirstIteration){
+            isFirstIteration = false
+        }
     }
 
     private fun findAntiPrompt(index: Int, isPromptMorse: Boolean): String {
@@ -138,12 +135,7 @@ class LearnChooseFragment : Fragment() {
     private fun printWrong(array: Array<String>, prompt: String, rand: Int, waitTime: Long, btnCode: Int){
         print("Wrong, you selected: ")
         println(array[(btnCode + rand)%4])
-        score -= 50
-
-        //On run update# 24/06/01
-        if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0) {
-            (activity as MainActivity).setScore(score, "c")
-        }
+        score -= 50 //TODO: Stop the Game here!
 
         binding.isCorrectChoose.isVisible = true
         binding.isCorrectChoose.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_wrong_background)
@@ -154,6 +146,7 @@ class LearnChooseFragment : Fragment() {
             append("   ")
             append(array[3])
         }
+        printScore()
         //aaa
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -167,14 +160,10 @@ class LearnChooseFragment : Fragment() {
         println(array[(btnCode + rand)%4])
         score += 100
 
-        //On run update# 24/06/01
-        if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0) {
-            (activity as MainActivity).setScore(score, "c")
-        }
-
         binding.isCorrectChoose.isVisible = true
         binding.isCorrectChoose.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_correct_background)
         binding.isCorrectChoose.text = getString(R.string.correct)
+        printScore()
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(waitTime)
@@ -187,7 +176,8 @@ class LearnChooseFragment : Fragment() {
         val rand = Random.nextInt(0, 10)
         val waitTime : Long = 1000
         val waitWrongTime : Long = 2500
-        binding.scoreboardChoose.text = "Score: $score"
+
+        printScore()
 
         binding.choosePrompt.text = prompt
 
@@ -357,10 +347,31 @@ class LearnChooseFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun printScore(){
+        Log.d("format_hs","Enter printScore")
+        if (score >= highScore && score != 0){
+            Log.d("format_hs","  Formatted! (HS: $highScore, S: $score)")
+            binding.scoreboardChoose.isVisible = false
+            binding.highScoreChoose!!.text = "New HighScore: $score"
+            binding.highScoreChoose!!.setTextColor(Color.parseColor("#00FF00"))
+
+        }
+        else{
+            Log.d("format_hs","  Formatted! (HS: $highScore, S: $score)")
+            binding.highScoreChoose!!.text = "HighScore: $highScore"
+            binding.scoreboardChoose.text = "Score: $score"
+            binding.scoreboardChoose.isVisible = true
+        }
+        Log.d("format_hs","Exit  printScore")
+    }
+
 
     override fun onDestroyView() {
-        if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0) {
-            (activity as MainActivity).setScore(score, "c")
+        if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0 && score > highScore) {
+            println("Set new score: $score")
+
+            (activity as MainActivity).setScore(score, "hc")
         }
         super.onDestroyView()
     }

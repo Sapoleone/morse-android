@@ -29,6 +29,7 @@ class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
+    private var sessionId = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,17 +40,31 @@ class AccountFragment : Fragment() {
         binding.backFromSettings.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_appHome)
         }
-        binding.loginBt.setOnClickListener {
-            findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
-        }
-        binding.signInBt.setOnClickListener {
-            findNavController().navigate(R.id.action_accountFragment_to_signInFragment)
-        }
-        binding.logOutBt.setOnClickListener {
-            (requireActivity() as MainActivity).destroySession()
-            findNavController().navigate(R.id.action_accountFragment_to_appHome)
-        }
+        sessionId = (requireActivity() as MainActivity).getSessionId()
+        function()
 
         return binding.root
+    }
+    private fun function(){
+        if(sessionId != "_void_" && sessionId != "null" && sessionId != "") {
+
+            binding.logOutBt.setOnClickListener {
+                (requireActivity() as MainActivity).destroySession()
+                findNavController().navigate(R.id.action_accountFragment_to_appHome)
+            }
+
+            //Disable the others
+            binding.loginBt.setBackgroundColor(requireContext().getColor(R.color.colorGray42))
+            binding.signInBt.setBackgroundColor(requireContext().getColor(R.color.colorGray42))
+        } else {
+            binding.loginBt.setOnClickListener {
+                findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
+            }
+            binding.signInBt.setOnClickListener {
+                findNavController().navigate(R.id.action_accountFragment_to_signInFragment)
+            }
+
+            binding.logOutBt.setBackgroundColor(requireContext().getColor(R.color.colorGray42))
+        }
     }
 }

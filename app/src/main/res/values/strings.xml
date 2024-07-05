@@ -33,9 +33,6 @@
     <string name="translate_info">Do you want to translate from MORSE or TEXT?</string>
     <string name="text_to_morse">Text to Morse</string>
     <string name="morse_to_text">Morse to Text</string>
-
-    <!-- VERSION NAME -->
-    <string name="version" translatable="false">v2.0-release</string>
     <string name="insert_username" translatable="false">Insert Username...</string>
     <string name="save" translatable="false">Save</string>
     <string name="username" translatable="false">Username</string>
@@ -47,5 +44,14 @@
     <string name="login">Login</string>
     <string name="sign_in">Sign In</string>
     <string name="log_out">Log Out</string>
+    <string name="account">Account</string>
+    <string name="infiniChoose">∞ CHOOSE</string>
+    <string name="highest_score_0" translatable="false">Highest score: 0</string>
+    <string name="new_version">New version Available</string>
+    <string name="update_string">Version %1$s is available. \nCurrent Version %2$s \nDo you want to update?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
+    <!-- VERSION NAME -->
+    <string name="version" translatable="false">v2.0.1-release</string>
 </resources>

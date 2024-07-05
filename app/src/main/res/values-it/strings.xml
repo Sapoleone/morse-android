@@ -27,4 +27,10 @@
     <string name="login">Login</string>
     <string name="sign_in">Registrati</string>
     <string name="log_out">Esci</string>
+    <string name="account">Account</string>
+    <string name="infiniChoose">∞ CHOOSE</string>
+    <string name="new_version">Nuova versione Disponibile</string>
+    <string name="update_string">È disponibile la versione %1$s. \nLa versione attuale è %2$s. \nVuoi aggiornare?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
 </resources>

@@ -5,14 +5,14 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SettingsFragment">
+    tools:context=".ui.AccountFragment">
 
     <TextView
-        android:id="@+id/settings_header"
+        android:id="@+id/account_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/settings"
+        android:text="@string/account"
         android:textColor="?attr/colorPrimary"
         android:textSize="34sp"
         android:textStyle="bold"
