@@ -24,7 +24,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentLearnTypeBinding
@@ -38,7 +37,6 @@ import kotlin.random.Random
 class LearnTypeFragment : Fragment() {
 
     private lateinit var binding: FragmentLearnTypeBinding
-    private lateinit var viewModel: LearnTypeViewModel
     private val ciphTxt = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
     private val ciphMor = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
     private var score:Int = 0
@@ -55,7 +53,6 @@ class LearnTypeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[LearnTypeViewModel::class.java]
         typeGameMain()
 
         binding.backFromType.setOnClickListener {

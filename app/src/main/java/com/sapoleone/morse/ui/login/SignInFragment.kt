@@ -28,6 +28,7 @@ import com.sapoleone.morse.MainActivity
 import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentSignInBinding
 
+@Suppress("LocalVariableName")
 class SignInFragment : Fragment() {
 
     private lateinit var binding: FragmentSignInBinding

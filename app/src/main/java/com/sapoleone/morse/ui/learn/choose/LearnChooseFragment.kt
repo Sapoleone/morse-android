@@ -69,6 +69,9 @@ class LearnChooseFragment : Fragment() {
         binding.sendSettingsChoose.setOnClickListener {
             changeCanBe()
         }
+        /*binding.menu!!.setOnClickListener {
+            (activity as MainActivity).menu()
+        }*/
 
         alphabetLength = ciphMor.size
         println(ciphMor[25])
@@ -135,7 +138,7 @@ class LearnChooseFragment : Fragment() {
     private fun printWrong(array: Array<String>, prompt: String, rand: Int, waitTime: Long, btnCode: Int){
         print("Wrong, you selected: ")
         println(array[(btnCode + rand)%4])
-        score -= 50 //TODO: Stop the Game here!
+        score = 0 //TODO: Stop the Game here!
 
         binding.isCorrectChoose.isVisible = true
         binding.isCorrectChoose.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_wrong_background)
@@ -175,7 +178,7 @@ class LearnChooseFragment : Fragment() {
     private fun printArray(array: Array<String>, prompt : String) {
         val rand = Random.nextInt(0, 10)
         val waitTime : Long = 1000
-        val waitWrongTime : Long = 2500
+        val waitWrongTime : Long = 10000
 
         printScore()
 
@@ -365,6 +368,8 @@ class LearnChooseFragment : Fragment() {
         }
         Log.d("format_hs","Exit  printScore")
     }
+
+
 
 
     override fun onDestroyView() {

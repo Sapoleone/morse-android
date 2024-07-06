@@ -57,7 +57,8 @@
         app:layout_constraintEnd_toStartOf="@+id/InfiniBtnAns2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InfiniChoosePrompt" />
+        app:layout_constraintTop_toBottomOf="@+id/InfiniChoosePrompt"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/InfiniBtnAns2"
@@ -70,7 +71,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/InfiniBtnAns1"
-        app:layout_constraintTop_toBottomOf="@+id/InfiniChoosePrompt" />
+        app:layout_constraintTop_toBottomOf="@+id/InfiniChoosePrompt"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/InfiniBtnAns3"
@@ -83,7 +85,8 @@
         app:layout_constraintEnd_toStartOf="@+id/InfiniBtnAns4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InfiniBtnAns1" />
+        app:layout_constraintTop_toBottomOf="@+id/InfiniBtnAns1"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/InfiniBtnAns4"
@@ -96,7 +99,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/InfiniBtnAns3"
-        app:layout_constraintTop_toBottomOf="@+id/InfiniBtnAns2" />
+        app:layout_constraintTop_toBottomOf="@+id/InfiniBtnAns2"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/InfiniBackFromChoose"
@@ -156,7 +160,8 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true" />
+        android:focusable="true"
+        tools:ignore="HardcodedText" />
 
     <CheckBox
         android:id="@+id/InfiniCheckBox_morse"
@@ -170,7 +175,8 @@
         android:text="Morse"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InfiniCheckBox_text" />
+        app:layout_constraintTop_toBottomOf="@+id/InfiniCheckBox_text"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/InfiniSendSettingsChoose"
@@ -180,6 +186,7 @@
         android:text="Save"
         android:onClick="changeCanBe"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InfiniCheckBox_morse" />
+        app:layout_constraintTop_toBottomOf="@+id/InfiniCheckBox_morse"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

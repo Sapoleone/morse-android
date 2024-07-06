@@ -25,6 +25,8 @@ import androidx.navigation.fragment.findNavController
 import com.sapoleone.morse.MainActivity
 import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentHomeBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 @Suppress("LocalVariableName")
 class HomeFragment : Fragment() {
@@ -34,7 +36,9 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private var currentVersionVeryFull = ""
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,6 +67,7 @@ class HomeFragment : Fragment() {
 
         val session_id = (requireActivity() as MainActivity).getSession()
         updateUser(session_id)
+        updateVersion()
 
 
         return binding.root
@@ -75,6 +80,15 @@ class HomeFragment : Fragment() {
             binding.currentUser!!.text = "User: $session_id"
         } else {
             binding.currentUser!!.text = getString(R.string.you_re_not_logged_in)
+        }
+    }
+    private fun updateVersion(){
+        runBlocking{
+            currentVersionVeryFull = (requireActivity() as MainActivity).getVersionVeryFull()
+            val temp = "v$currentVersionVeryFull"
+            println("temp: $temp")
+            binding.version.text = temp
+            delay(1000)
         }
     }
     override fun onDestroyView() {

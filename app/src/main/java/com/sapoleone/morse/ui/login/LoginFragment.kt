@@ -30,6 +30,7 @@ import com.sapoleone.morse.databinding.FragmentLoginBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
+@Suppress("LocalVariableName")
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding

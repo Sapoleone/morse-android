@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:imeOptions="actionDone"
-    tools:context=".ui.SettingsFragment">
+    tools:context=".ui.login.LoginFragment">
 
     <TextView
         android:id="@+id/login_header"
@@ -56,7 +56,7 @@
         android:lineSpacingExtra="8sp"
         android:text="@string/lorem_ipsum"
         android:textAlignment="center"
-        android:textColor="@color/material_dynamic_neutral20"
+        android:textColor="@color/colorDarkGray"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible"

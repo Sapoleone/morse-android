@@ -33,4 +33,8 @@
     <string name="update_string">È disponibile la versione %1$s. \nLa versione attuale è %2$s. \nVuoi aggiornare?</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="selectChooseGamemode">Seleziona la tipologia di prompt</string>
+    <string name="morseAndText">ENTRAMBI</string>
+    <string name="onlyMorse">Solo MORSE</string>
+    <string name="onlyText">Solo TESTO</string>
 </resources>

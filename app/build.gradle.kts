@@ -12,8 +12,8 @@ android {
         applicationId = "com.sapoleone.morse"
         minSdk = 24
         targetSdk = 34
-        versionCode = 8
-        versionName = "2.0.1-release"
+        versionCode = 8                 //TODO: Change Version code (Gradle)
+        versionName = "2.0.1-release"   //TODO: Change Version name (Gradle)
 
         /*
         OLD Versions:
@@ -70,7 +70,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
 
 
-    // TODO: Add the dependencies for Firebase products you want to use
+    // ODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 

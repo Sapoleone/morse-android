@@ -51,7 +51,12 @@
     <string name="update_string">Version %1$s is available. \nCurrent Version %2$s \nDo you want to update?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="selectChooseGamemode">Select the prompt type…</string>
+    <string name="morseAndText">BOTH</string>
+    <string name="onlyMorse">Only MORSE</string>
+    <string name="onlyText">Only TEXT</string>
 
     <!-- VERSION NAME -->
-    <string name="version" translatable="false">v2.0.1-release</string>
+    <string name="version" translatable="false">version...</string>
+
 </resources>
