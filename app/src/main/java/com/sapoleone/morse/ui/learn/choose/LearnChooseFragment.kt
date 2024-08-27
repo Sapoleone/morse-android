@@ -369,9 +369,6 @@ class LearnChooseFragment : Fragment() {
         Log.d("format_hs","Exit  printScore")
     }
 
-
-
-
     override fun onDestroyView() {
         if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0 && score > highScore) {
             println("Set new score: $score")

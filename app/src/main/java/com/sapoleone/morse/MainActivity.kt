@@ -11,9 +11,7 @@
 
  *You should have received a copy of the GNU General Public License
  *along with morseApp.  If not, see <http://www.gnu.org/licenses/>.*/
-@file:Suppress("LiftReturnOrAssignment", "UNUSED_PARAMETER", "PrivatePropertyName", "LocalVariableName",
-    "KotlinConstantConditions"
-)
+@file:Suppress("LiftReturnOrAssignment", "UNUSED_PARAMETER", "PrivatePropertyName", "LocalVariableName", "KotlinConstantConditions")
 
 package com.sapoleone.morse
 
@@ -453,70 +451,15 @@ class MainActivity : AppCompatActivity() {
 
     //Morse
     @Suppress("NAME_SHADOWING")
-    fun decode(ignoredView: View?) {
+    fun decode(mTxt:String) {
         //Init
         var i = 0
         var out = ""
-        val ciph1 = arrayOf(
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G",
-            "H",
-            "I",
-            "J",
-            "K",
-            "L",
-            "M",
-            "N",
-            "O",
-            "P",
-            "Q",
-            "R",
-            "S",
-            "T",
-            "U",
-            "V",
-            "W",
-            "X",
-            "Y",
-            "Z"
-        )
-        val ciph2 = arrayOf(
-            ".-",
-            "-...",
-            "-.-.",
-            "-..",
-            ".",
-            "..-.",
-            "--.",
-            "....",
-            "..",
-            ".---",
-            "-.-",
-            ".-..",
-            "--",
-            "-.",
-            "---",
-            ".--.",
-            "--.-",
-            ".-.",
-            "...",
-            "-",
-            "..-",
-            "...-",
-            ".--",
-            "-..-",
-            "-.--",
-            "--.."
-        )
+        val ciph1 = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+        val ciph2 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
         //Cycle through the whole PHRASE
         while (i < mTxt.length) {
             var let = ""
-
             //Cycle through the LETTER
             while (mTxt[i] != '/') {
                 let += mTxt[i]
@@ -526,20 +469,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             println("LET: $let")
-
             i++
-
             //Conversion from MORSE to LETTERS
-            //NOTE: How to use a for?; Using a WHILE instead
             var found = false
-            var j = 0                       //@FOR initialization
-            while (j < ciph2.size) {         //@FOR condition
+            var j = 0
+            while (j < ciph2.size) {
                 if (let == ciph2[j]) {
                     out += ciph1[j]
                     found = true
                     break
                 }
-                j++                         //@FOR increment
+                j++
             }
 
             //Check if the WORD is ended
@@ -564,11 +504,10 @@ class MainActivity : AppCompatActivity() {
             val previewTextView = findViewById<TextView>(R.id.preview)
             previewTextView.text = getString(R.string.use_the_buttons_below_to_write)
 
-
             val newSizeInSp = 20
             previewTextView.textSize = newSizeInSp.toFloat()
         }
-        mTxt = ""
+        this.mTxt = ""
     }
 
     fun encode(ignoredView: View?) {
@@ -579,90 +518,9 @@ class MainActivity : AppCompatActivity() {
         //Init
         var i = 0
         var out = ""
-        val ciph1 = arrayOf(
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F',
-            'G',
-            'H',
-            'I',
-            'J',
-            'K',
-            'L',
-            'M',
-            'N',
-            'O',
-            'P',
-            'Q',
-            'R',
-            'S',
-            'T',
-            'U',
-            'V',
-            'W',
-            'X',
-            'Y',
-            'Z'
-        )
-        val ciph2 = arrayOf(
-            'a',
-            'b',
-            'c',
-            'd',
-            'e',
-            'f',
-            'g',
-            'h',
-            'i',
-            'j',
-            'k',
-            'l',
-            'm',
-            'n',
-            'o',
-            'p',
-            'q',
-            'r',
-            's',
-            't',
-            'u',
-            'v',
-            'w',
-            'x',
-            'y',
-            'z'
-        )
-        val ciph3 = arrayOf(
-            ".-",
-            "-...",
-            "-.-.",
-            "-..",
-            ".",
-            "..-.",
-            "--.",
-            "....",
-            "..",
-            ".---",
-            "-.-",
-            ".-..",
-            "--",
-            "-.",
-            "---",
-            ".--.",
-            "--.-",
-            ".-.",
-            "...",
-            "-",
-            "..-",
-            "...-",
-            ".--",
-            "-..-",
-            "-.--",
-            "--.."
-        )
+        val ciph1 = arrayOf('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
+        val ciph2 = arrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+        val ciph3 = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
 
         //Direct Translation
         while (i < txt.length) {
@@ -690,41 +548,12 @@ class MainActivity : AppCompatActivity() {
         outputTextView.textSize = newSizeInSp.toFloat()
     }
 
-    private fun printAndChange() {
+     fun printAndChange(text:String) {
         val previewTextView = findViewById<TextView>(R.id.preview)
-        previewTextView.text = mTxt
+        previewTextView.text = text
 
         val newSizeInSp = 36
         previewTextView.textSize = newSizeInSp.toFloat()
-    }
-
-    //TODO: Move the functions below to MorseFragment
-    fun dashClick(ignoredView: View?) {
-        //println("DASH")
-        mTxt += "-"
-        println(mTxt)
-        printAndChange()
-
-    }
-
-    fun dotClick(ignoredView: View?) {
-        //println("DOT")
-        mTxt += "."
-        println(mTxt)
-        printAndChange()
-    }
-
-    fun slashClick(ignoredView: View?) {
-        //println("SLASH")
-        mTxt += "/"
-        println(mTxt)
-        printAndChange()
-    }
-
-    fun cancClick(ignoredView: View?) {
-        //println("CANC")
-        mTxt = mTxt.dropLast(1)
-        printAndChange()
     }
 
     //Version control
