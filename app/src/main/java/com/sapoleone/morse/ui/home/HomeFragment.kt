@@ -61,8 +61,11 @@ class HomeFragment : Fragment() {
         binding.gotoLearn.setOnClickListener {
             findNavController().navigate(R.id.action_appHome_to_learnHomeFragment)
         }
-        binding.btnAccount?.setOnClickListener {
+        binding.btnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_appHome_to_accountFragment)
+        }
+        binding.permBtn.setOnClickListener {
+            (requireActivity() as MainActivity).launchRequestPermission()
         }
 
         val session_id = (requireActivity() as MainActivity).getSession()

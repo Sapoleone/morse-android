@@ -16,22 +16,29 @@
 package com.sapoleone.morse
 
 //import androidx.appcompat.app.AlertDialog
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DownloadManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.IntentSender
+import android.content.pm.PackageInstaller
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
@@ -50,13 +57,11 @@ import java.io.File
 import java.io.IOException
 
 //import kotlin.coroutines.jvm.internal.CompletedContinuation.context
-
 @Suppress("MemberVisibilityCanBePrivate")
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private val db = Firebase.firestore
-    //private val REQUEST_WRITE_PERMISSION = 100
-    //private val REQUEST_INSTALL_PERMISSION = 101
+    private val debugAppInstall = true
 
     private lateinit var binding: ActivityMainBinding
 
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     //TODO: CHANGE VERSION
     private val currentVersion    = 2 //Version: x.0.0
     private val currentDecimal    = 0 //Version: 0.x.0
-    private val currentSubdecimal = 1 //Version: 0.0.x
+    private val currentSubdecimal = 2 //Version: 0.0.x
     private val betaId            = 0 //If betaId is 0 is a release else is a beta
 
     private var currentVersionFull = buildString {
@@ -91,6 +96,23 @@ class MainActivity : AppCompatActivity() {
     private var latestSubdecimal = -5
 
     private lateinit var downloadUrl: String
+    //private val REQUEST_WRITE_PERMISSION = 100
+    //private val REQUEST_INSTALL_PERMISSION = 101
+    companion object {
+        private const val REQUEST_INSTALL_PACKAGES_CODE = 100
+    }
+
+    private val permissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        Log.d("perm", "isGranted: $isGranted")
+        if (isGranted){
+            Log.i("perm", "Permission granted")
+            permissonsGranted()
+        }else{
+            Log.e("perm", "Permission denied!")
+        }
+    }
 
 
     @SuppressLint("SetTextI18n")
@@ -584,8 +606,10 @@ class MainActivity : AppCompatActivity() {
                                 latestVersion = jsonObject.get("version").asInt
                                 latestDecimal = jsonObject.get("decimal").asInt
                                 latestSubdecimal = jsonObject.get("subversion").asInt
-
-                                if (currentVersion <= latestVersion) {
+                                if(debugAppInstall){
+                                    downloadRequest(downloadUrl)
+                                }
+                                else if (currentVersion <= latestVersion) {
                                     if (currentVersion < latestVersion) {
                                         downloadRequest(downloadUrl)
                                     }
@@ -670,10 +694,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    //@Suppress("DEPRECATION", "NAME_SHADOWING")
+    @SuppressLint("InlinedApi")
     private fun downloadAndInstallApk(url: String) {
         val request = DownloadManager.Request(Uri.parse(url))
-        request.setTitle("Downloading update")
+        request.setTitle("Downloading morseApp update")
         request.setDescription("Downloading new version of the app")
         request.setDestinationInExternalPublicDir(
             Environment.DIRECTORY_DOWNLOADS,
@@ -683,35 +708,143 @@ class MainActivity : AppCompatActivity() {
 
         val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadId = downloadManager.enqueue(request)
+        Log.d("down", "Download enqueued with ID: $downloadId")
 
         val onComplete = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 val uri = downloadManager.getUriForDownloadedFile(downloadId)
-                if (uri != null) {
-                    val file = File(
-                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                        "morseApp-latest.apk"
-                    )
-                    val fileUri = FileProvider.getUriForFile(
-                        this@MainActivity,
-                        "com.sapoleone.morse.fileprovider",
-                        file
-                    )
+                if (uri == null) {
+                    Log.e("down", "Failed to retrieve URI for downloaded file.")
+                    return
+                }
+                Log.d("down", "URI: $uri")
+
+                val file = File(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                    "morseApp-latest.apk"
+                )
+                val fileUri = FileProvider.getUriForFile(
+                    this@MainActivity,
+                    "com.sapoleone.morse.fileprovider",
+                    file
+                )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    Log.d("down", "Android version >= O")
+                    if (!packageManager.canRequestPackageInstalls()) {
+                        Log.d("down", "Starting Requesting permission mejo")
+                        launchRequestPermission()
+                        installApk(fileUri)
+                    } else {
+                        installApk(fileUri)
+                    }
+                } else {
+                    Log.d("down", "Android version < O")
                     installApk(fileUri)
                 }
                 unregisterReceiver(this)
             }
         }
 
-        registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), Context.RECEIVER_NOT_EXPORTED)
+
+        Log.d("down", "BroadcastReceiver registered")
     }
 
-    private fun installApk(uri: Uri) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(uri, "application/vnd.android.package-archive")
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    fun installApk(apkUri: Uri) {
+        Log.d("down", "Installing started")
+        val packageInstaller = packageManager.packageInstaller
+        val params = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL)
+        val sessionId = packageInstaller.createSession(params)
+        val session = packageInstaller.openSession(sessionId)
+
+        contentResolver.openInputStream(apkUri)?.use { input ->
+            session.openWrite("my_app_install", 0, -1).use { output ->
+                input.copyTo(output)
+                session.fsync(output)
+            }
         }
-        startActivity(intent)
+
+        session.commit(createIntentSender(sessionId))
+        session.close()
     }
+
+    private fun createIntentSender(sessionId: Int): IntentSender {
+        Log.d("down", "Created IntentSender")
+        val intent = Intent(this, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            sessionId,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+        )
+        return pendingIntent.intentSender
+    }
+    class InstallResultReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val status = intent.getIntExtra(PackageInstaller.EXTRA_STATUS, PackageInstaller.STATUS_FAILURE)
+            when (status) {
+                PackageInstaller.STATUS_SUCCESS -> {
+                    Log.i("down", "Installation succesfull")
+                }
+                PackageInstaller.STATUS_FAILURE -> {
+                    val message = intent.getStringExtra(PackageInstaller.EXTRA_STATUS_MESSAGE)
+                    Log.e("down", "Installation failed: $message")
+                }
+                // Gestisci altri casi se necessario
+            }
+        }
+    }
+
+    fun launchRequestPermission(){
+        val permission = Manifest.permission.REQUEST_INSTALL_PACKAGES
+        //val permission = Manifest.permission.CAMERA
+        Log.d("perm", "Launching request for $permission permission")
+        permissionLauncher.launch(permission)
+    }
+    fun launchRequestPermissionMejo(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (!packageManager.canRequestPackageInstalls()) {
+                val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
+                    .setData(Uri.parse(String.format("package:%s", packageName)))
+                startActivityForResult(intent, REQUEST_INSTALL_PACKAGES_CODE)
+            }
+        }
+
+    }
+    fun permissonsGranted(){
+        Log.i("perm", "Permission Granted")
+    }
+
+    /*
+    fun checkPermissions(permission: String, requestCode: Int){
+        Log.d("perm", "Checking the $permission permission")
+        if(ContextCompat.checkSelfPermission(this,permission)==PackageManager.PERMISSION_DENIED){
+            Log.d("perm", "Requesting the $permission permission")
+            //ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
+            ActivityResultContracts.RequestPermission()
+
+        } else {
+            Log.d("perm", "Permission $permission was already granted")
+            Toast.makeText(this, "Permission Already granted", Toast.LENGTH_SHORT).show()   //TODO: Revove this Toast
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == REQUEST_INSTALL_PACKAGES_CODE){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()       //TODO: Revove this Toast
+                Log.i("perm", "Install packages permission granted!")
+            } else {
+                Toast.makeText(this, "Cannot install the app", Toast.LENGTH_LONG).show()    //TODO: Revove this Toast
+                Log.e("perm", "Install packages permission denied")
+            }
+        }
+    }*/
+
 }
+

@@ -12,8 +12,8 @@ android {
         applicationId = "com.sapoleone.morse"
         minSdk = 24
         targetSdk = 34
-        versionCode = 8                 //TODO: Change Version code (Gradle)
-        versionName = "2.0.1-release"   //TODO: Change Version name (Gradle)
+        versionCode = 9                 //TODO: Change Version code (Gradle)
+        versionName = "2.0.2-release"   //TODO: Change Version name (Gradle)
 
         /*
         OLD Versions:
@@ -25,6 +25,7 @@ android {
         06 - 2.0-beta_03
         07 - 2.0-release
         08 - 2.0.1-release
+        09 - 2.0.2-release
         */
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +49,10 @@ android {
 }
 
 dependencies {
+    implementation("androidx.activity:activity-ktx:1.9.1")
+    implementation("androidx.fragment:fragment-ktx:1.8.2")
+
+
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("androidx.core:core-ktx:1.13.1")
@@ -80,4 +85,5 @@ dependencies {
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+    implementation("androidx.activity:activity-ktx:1.9.1")
 }
