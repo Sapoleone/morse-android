@@ -134,16 +134,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:iconGravity="top" />
 
-    <Button
-        android:id="@+id/permBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="reqPerm"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gotoLearn"
-        app:layout_constraintVertical_bias="0.417" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_learnHomeFragment_to_learnChooseHomeFragment"
             app:destination="@id/learnChooseHomeFragment" />
+        <action
+            android:id="@+id/action_learnHomeFragment_to_learnWordsFragment"
+            app:destination="@id/learnWordsFragment" />
     </fragment>
 
     <fragment
@@ -151,5 +154,14 @@
         <action
             android:id="@+id/action_infiniChooseFragment_to_learnChooseHomeFragment"
             app:destination="@id/learnChooseHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/learnWordsFragment"
+        android:name="com.sapoleone.morse.ui.learn.words.LearnWordsFragment"
+        android:label="fragment_learn_words"
+        tools:layout="@layout/fragment_learn_words" >
+        <action
+            android:id="@+id/action_learnWordsFragment_to_learnHomeFragment"
+            app:destination="@id/learnHomeFragment" />
     </fragment>
 </navigation>

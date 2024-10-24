@@ -23,7 +23,7 @@
     <string name="select_your_favourite_learn_method">Select a learn method…</string>
     <string name="correct">Correct!</string>
     <string name="wrong">Wrong!</string>
-    <string name="score_0">"Score:  0 "</string>
+    <string name="score_0">Score:  0 </string>
     <string name="back">Back</string>
     <string name="endl" translatable="false">&#xA;</string>
     <string name="score">Score: %1$s</string>
@@ -58,5 +58,6 @@
 
     <!-- VERSION NAME -->
     <string name="version" translatable="false">version...</string>
+    <string name="words" translatable="false">Words</string>
 
 </resources>

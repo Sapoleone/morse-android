@@ -473,7 +473,7 @@ class MainActivity : AppCompatActivity(){
 
     //Morse
     @Suppress("NAME_SHADOWING")
-    fun decode(mTxt:String) {
+    fun decode(mTxt:String): String {
         //Init
         var i = 0
         var out = ""
@@ -529,10 +529,10 @@ class MainActivity : AppCompatActivity(){
             val newSizeInSp = 20
             previewTextView.textSize = newSizeInSp.toFloat()
         }
-        this.mTxt = ""
+        return mTxt
     }
 
-    fun encode(ignoredView: View?) {
+    fun encode(ignoredView: View?): String {
         //Input
         val editText = findViewById<EditText>(R.id.typeInput)
         val txt = editText.text.toString()
@@ -568,6 +568,7 @@ class MainActivity : AppCompatActivity(){
 
         val newSizeInSp = 20
         outputTextView.textSize = newSizeInSp.toFloat()
+        return out
     }
 
      fun printAndChange(text:String) {

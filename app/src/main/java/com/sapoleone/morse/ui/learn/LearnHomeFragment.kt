@@ -44,6 +44,10 @@ class LearnHomeFragment : Fragment() {
             binding.gotoLearn2Choose.setOnClickListener{
                 findNavController().navigate(R.id.action_learnHomeFragment_to_learnChooseHomeFragment)
             }
+            binding.gotoLearn2Words.setOnClickListener {
+                findNavController().navigate(R.id.action_learnHomeFragment_to_learnWordsFragment)
+            }
+
         //DON'T REMOVE! - Developing In Progress
             /*
             binding.gotoLearn2Pair.setOnClickListener {

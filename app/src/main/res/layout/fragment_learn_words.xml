@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout10"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.learn.words.LearnWordsFragment">
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/learnWordsInput"
+        android:layout_width="297dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="55dp"
+        android:autoLink="none"
+        android:hint="Answer..."
+        android:inputType="text"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputLearnWord" />
+
+
+    <TextView
+        android:id="@+id/outputLearnWord"
+        android:layout_width="264dp"
+        android:layout_height="299dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounded_gray_background"
+        android:fadingEdge="horizontal|vertical"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="Printing the string"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_Learn_Words" />
+
+    <Button
+        android:id="@+id/backFromLearnWords"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+
+        android:text="@string/back"
+        android:textAlignment="center"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconGravity="textTop"
+        app:iconSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle_Learn_Words"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:text="@string/words"
+        android:textAllCaps="true"
+        android:textColor="?attr/colorSecondaryVariant"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_Learn_Words" />
+
+    <TextView
+        android:id="@+id/title_Learn_Words"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/learn"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/learnWordsResponse"
+        android:layout_width="335dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_correct_background"
+        android:fadingEdge="horizontal|vertical"
+        android:gravity="center"
+        android:text="@string/lorem_ipsum"
+        android:textAlignment="center"
+
+        android:textSize="48sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/outputLearnWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
