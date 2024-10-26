@@ -12,8 +12,8 @@ android {
         applicationId = "com.sapoleone.morse"
         minSdk = 24
         targetSdk = 34
-        versionCode = 9                 //TODO: Change Version code (Gradle)
-        versionName = "2.0.2-release"   //TODO: Change Version name (Gradle)
+        versionCode = 10                //TODO: Change Version code (Gradle)
+        versionName = "2.1.0-release"   //TODO: Change Version name (Gradle)
 
         /*
         OLD Versions:
@@ -26,6 +26,7 @@ android {
         07 - 2.0-release
         08 - 2.0.1-release
         09 - 2.0.2-release
+        10 - 2.1.0-release
         */
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

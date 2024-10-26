@@ -15,6 +15,8 @@
 package com.sapoleone.morse.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +29,7 @@ import com.sapoleone.morse.R
 import com.sapoleone.morse.databinding.FragmentHomeBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+
 
 @Suppress("LocalVariableName")
 class HomeFragment : Fragment() {
@@ -63,6 +66,11 @@ class HomeFragment : Fragment() {
         }
         binding.btnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_appHome_to_accountFragment)
+        }
+        binding.btnFeedback.setOnClickListener{
+            val uri = Uri.parse("https://github.com/Sapoleone/morse-android/issues/new")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
         /*binding.permBtn.setOnClickListener {
             (requireActivity() as MainActivity).launchRequestPermission()

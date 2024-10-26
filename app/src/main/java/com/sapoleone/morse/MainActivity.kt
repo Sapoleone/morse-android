@@ -61,7 +61,8 @@ import java.io.IOException
 class MainActivity : AppCompatActivity(){
 
     private val db = Firebase.firestore
-    private val debugAppInstall = true
+    //private val debugAppInstall = true
+    private val debugAppInstall = false
 
     private lateinit var binding: ActivityMainBinding
 
@@ -78,8 +79,8 @@ class MainActivity : AppCompatActivity(){
 
     //TODO: CHANGE VERSION
     private val currentVersion    = 2 //Version: x.0.0
-    private val currentDecimal    = 0 //Version: 0.x.0
-    private val currentSubdecimal = 2 //Version: 0.0.x
+    private val currentDecimal    = 1 //Version: 0.x.0
+    private val currentSubdecimal = 0 //Version: 0.0.x
     private val betaId            = 0 //If betaId is 0 is a release else is a beta
 
     private var currentVersionFull = buildString {
@@ -607,38 +608,60 @@ class MainActivity : AppCompatActivity(){
                                 latestVersion = jsonObject.get("version").asInt
                                 latestDecimal = jsonObject.get("decimal").asInt
                                 latestSubdecimal = jsonObject.get("subversion").asInt
+                                println("$currentVersion $latestVersion")
+                                println(currentVersion == latestVersion)
+
+                                println("$currentDecimal $latestDecimal")
+                                println(currentDecimal == latestDecimal)
+
+                                println("$currentSubdecimal $latestSubdecimal")
+                                println(currentSubdecimal == latestSubdecimal)
+
                                 if(debugAppInstall){
                                     downloadRequest(downloadUrl)
                                 }
-                                else if (currentVersion <= latestVersion) {
-                                    if (currentVersion < latestVersion) {
-                                        downloadRequest(downloadUrl)
-                                    }
-                                    if (currentVersion == latestVersion) {
-                                        if (currentDecimal <= latestDecimal) {
-                                            if (currentDecimal < latestDecimal) {
-                                                downloadRequest(downloadUrl)
-                                            }
-                                            if (currentDecimal == latestDecimal) {
+                                else if(currentVersion != latestVersion &&
+                                        currentDecimal != latestDecimal &&
+                                        currentSubdecimal != latestSubdecimal)
+                                {
+                                    /*if (currentVersion <= latestVersion) {
+                                        if (currentVersion < latestVersion) {
+                                            downloadRequest(downloadUrl)
+                                        }
+                                        if (currentVersion == latestVersion) {
+                                            if (currentDecimal <= latestDecimal) {
+                                                if (currentDecimal < latestDecimal) {
+                                                    downloadRequest(downloadUrl)
+                                                }
+                                                if (currentDecimal == latestDecimal) {
 
-                                                if (latestSubdecimal != -2 && latestSubdecimal != -3) {
+                                                    if (latestSubdecimal != -2 && latestSubdecimal != -3) {
 
-                                                    if (currentSubdecimal <= latestSubdecimal) {
+                                                        if (currentSubdecimal <= latestSubdecimal) {
 
-                                                        if (currentSubdecimal < latestSubdecimal) {
-                                                            downloadRequest(downloadUrl)
+                                                            if (currentSubdecimal < latestSubdecimal) {
+                                                                downloadRequest(downloadUrl)
+                                                            }
                                                         }
-                                                    }
-                                                } else {
-                                                    latestSubdecimal = 0
-                                                    if (currentSubdecimal <= latestSubdecimal) {
-                                                        if (currentSubdecimal < latestSubdecimal) {
-                                                            downloadRequest(downloadUrl)
+                                                    } else {
+                                                        latestSubdecimal = 0
+                                                        if (currentSubdecimal <= latestSubdecimal) {
+                                                            if (currentSubdecimal < latestSubdecimal) {
+                                                                downloadRequest(downloadUrl)
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
                                         }
+                                    }*/
+                                    if(
+                                        (currentVersion < latestVersion) ||
+                                        (currentVersion == latestVersion && currentDecimal < latestDecimal) ||
+                                        (currentVersion == latestVersion && currentDecimal == latestDecimal && currentSubdecimal < latestSubdecimal)
+                                        )
+                                    {
+                                        downloadRequest(downloadUrl)
                                     }
                                 }
                             } catch (e: Exception) {
@@ -695,7 +718,6 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    //@Suppress("DEPRECATION", "NAME_SHADOWING")
     @SuppressLint("InlinedApi")
     private fun downloadAndInstallApk(url: String) {
         val request = DownloadManager.Request(Uri.parse(url))

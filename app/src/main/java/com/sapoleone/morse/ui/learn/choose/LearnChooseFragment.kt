@@ -138,7 +138,10 @@ class LearnChooseFragment : Fragment() {
     private fun printWrong(array: Array<String>, prompt: String, rand: Int, waitTime: Long, btnCode: Int){
         print("Wrong, you selected: ")
         println(array[(btnCode + rand)%4])
+        saveHightscore()
         score = 0 //TODO: Stop the Game here!
+        updateScore()
+        printScore()
 
         binding.isCorrectChoose.isVisible = true
         binding.isCorrectChoose.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_wrong_background)
@@ -365,16 +368,21 @@ class LearnChooseFragment : Fragment() {
             binding.highScoreChoose!!.text = "HighScore: $highScore"
             binding.scoreboardChoose.text = "Score: $score"
             binding.scoreboardChoose.isVisible = true
+            binding.highScoreChoose!!.setTextColor(Color.parseColor("#adadad"))
         }
         Log.d("format_hs","Exit  printScore")
     }
 
-    override fun onDestroyView() {
+    private fun saveHightscore(){
         if(session_id != "_void_" && session_id != "null" && session_id != "" && score != 0 && score > highScore) {
             println("Set new score: $score")
 
             (activity as MainActivity).setScore(score, "hc")
         }
+    }
+
+    override fun onDestroyView() {
+        saveHightscore()
         super.onDestroyView()
     }
 }

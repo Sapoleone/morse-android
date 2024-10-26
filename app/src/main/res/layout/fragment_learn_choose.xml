@@ -147,9 +147,9 @@
     <CheckBox
         android:id="@+id/checkBox_text"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="-15dp"
         android:buttonTint="?attr/colorPrimary"
         android:checked="true"
         android:clickable="true"
@@ -157,32 +157,31 @@
         android:fontFamily="monospace"
         android:text=" Text"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/checkBox_morse"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox_morse"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="-15dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="9dp"
         android:buttonTint="?attr/colorPrimary"
         android:checked="true"
         android:fontFamily="monospace"
         android:text="Morse"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox_text" />
+        app:layout_constraintBottom_toTopOf="@+id/sendSettingsChoose"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/sendSettingsChoose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
         android:onClick="changeCanBe"
-        android:text="Save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox_morse" />
+        android:text="Change"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
 
     <TextView
         android:id="@+id/highScoreChoose"

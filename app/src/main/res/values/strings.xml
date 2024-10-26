@@ -59,5 +59,6 @@
     <!-- VERSION NAME -->
     <string name="version" translatable="false">version...</string>
     <string name="words" translatable="false">Words</string>
+    <string name="feedback">Feedback</string>
 
 </resources>
