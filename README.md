@@ -2,10 +2,9 @@
 - Text to Morse translation
 - Morse to text translation
 - Learn, Choose
-
+- Learn, Words
 
 **COMING FEATURES:**
-- Learn, Pair
 - Learn, Type
 
 
